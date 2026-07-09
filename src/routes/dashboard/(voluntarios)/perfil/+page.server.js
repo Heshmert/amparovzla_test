@@ -167,6 +167,7 @@ export const actions = {
     const estado = data.get("estado")?.toString();
     const municipio = data.get("municipio")?.toString();
     const localidad = data.get("localidad")?.toString();
+    const caracteristicas = data.get("caracteristicas")?.toString();
     const direccionExacta = data.get("direccionExacta")?.toString();
 
     if (!estado || !municipio || !localidad || !direccionExacta) {
@@ -213,8 +214,7 @@ export const actions = {
             genero: perfil.genero || "N/A",
             telefono: perfil.telefono || "N/A",
             fechaNacimiento: perfil.fechaNacimiento || new Date(),
-            caracteristicas:
-              "REGISTRADO DESDE INTERFAZ DE PERFIL CIVIL VAMOSSVZLA",
+            caracteristicas,
             estado,
             municipio,
             localidad,
@@ -339,7 +339,7 @@ export const actions = {
   const color = data.get("color")?.toString().trim().toUpperCase();
 
   if (!placa || !tipo || !marca || !modelo || !color) {
-    return fail(400, { error: "Todos los campos de identificación vehicular son mandatorios." });
+    return fail(400, { error: "Todos los campos de identificación vehicular son necesarios." });
   }
 
   try {
@@ -366,9 +366,9 @@ export const actions = {
       });
     }
 
-    return { exito: "Unidad logística vehicular sincronizada correctamente." };
+    return { exito: "Unidad vehicular actualizada correctamente" };
   } catch (err) {
-    return fail(500, { error: "Fallo interno de red al indexar la unidad vehicular." });
+    return fail(500, { error: "Fallo interno de red." });
   };
 },
 }

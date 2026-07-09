@@ -109,8 +109,7 @@ export const actions = {
     const estado = data.get("estado")?.toString();
     const municipio = data.get("municipio")?.toString() || null;
     const localidad = data.get("localidad")?.toString() || null;
-    const direccionExacta =
-      data.get("direccionExacta")?.toString().trim() || null;
+    const direccionExacta = data.get("direccionExacta")?.toString().trim() || null;
     const estatus = data.get("estatus")?.toString() || "desaparecido";
     const img = data.get("img")?.toString().trim() || null;
 

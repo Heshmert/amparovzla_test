@@ -39,11 +39,11 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
             <div class="space-y-1">
                 <label for="titulo" class="text-[10px] font-black text-stone-500 uppercase">Incidencia</label>
-                <input type="text" id="titulo" name="titulo" required class="w-full border border-stone-200 bg-stone-50 p-2 text-xs font-bold uppercase rounded-none focus:outline-none" />
+                <input type="text" id="titulo" name="titulo" required/>
             </div>
             <div class="space-y-1">
                 <label for="categoria" class="text-[10px] font-black text-stone-500 uppercase">Categoría</label>
-                <select id="categoria" name="categoria" required class="w-full border border-stone-200 bg-stone-50 p-2 text-xs font-bold uppercase rounded-none focus:outline-none">
+                <select id="categoria" name="categoria" required >
                     {#each data.categoriaDenuncia || [] as cat}
                         <option value={cat}>{cat}</option>
                     {/each}
@@ -54,7 +54,7 @@
         <div class="p-2 bg-stone-50 border border-stone-200 grid grid-cols-1 sm:grid-cols-3 gap-2 rounded-none">
             <div class="space-y-1">
                 <label for="estado" class="text-[9px] font-black text-stone-400 uppercase">Estado</label>
-                <select id="estado" name="estado" bind:value={estadoSeleccionado} required class="w-full border border-stone-200 bg-white p-1 text-[11px] font-bold uppercase rounded-none focus:outline-none">
+                <select id="estado" name="estado" bind:value={estadoSeleccionado} required >
                     <option value="">SELECCIONE</option>
                     {#each data.geografia || [] as est}
                         <option value={est.estado}>{est.estado}</option>
@@ -64,7 +64,7 @@
 
             <div class="space-y-1">
                 <label for="municipio" class="text-[9px] font-black text-stone-400 uppercase">Municipio</label>
-                <select id="municipio" name="municipio" bind:value={municipioSeleccionado} required disabled={!estadoSeleccionado} class="w-full border border-stone-200 bg-white p-1 text-[11px] font-bold uppercase rounded-none focus:outline-none disabled:bg-stone-200/50 disabled:opacity-60">
+                <select id="municipio" name="municipio" bind:value={municipioSeleccionado} required disabled={!estadoSeleccionado} >
                     <option value="">SELECCIONE</option>
                     {#each listaMunicipios as mun}
                         <option value={mun.municipio}>{mun.municipio}</option>
@@ -74,7 +74,7 @@
 
             <div class="space-y-1">
                 <label for="parroquia" class="text-[9px] font-black text-stone-400 uppercase">Parroquia</label>
-                <select id="parroquia" name="localidad" bind:value={localidadSeleccionada} required disabled={!municipioSeleccionado} class="w-full border border-stone-200 bg-white p-1 text-[11px] font-bold uppercase rounded-none focus:outline-none disabled:bg-stone-200/50 disabled:opacity-60">
+                <select id="parroquia" name="localidad" bind:value={localidadSeleccionada} required disabled={!municipioSeleccionado}>
                     <option value="">SELECCIONE</option>
                     {#each listaParroquias as par}
                         <option value={par}>{par}</option>
@@ -85,7 +85,7 @@
 
         <div class="space-y-1">
             <label for="descripcion" class="text-[10px] font-black text-stone-500 uppercase">Hechos Observados</label>
-            <textarea id="descripcion" name="descripcion" required class="w-full border border-stone-200 bg-stone-50 p-2 text-xs font-mono text-stone-900 focus:outline-none rounded-none h-20 resize-none"></textarea>
+            <textarea id="descripcion" name="descripcion" required ></textarea>
         </div>
     </div>
 

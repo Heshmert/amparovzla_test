@@ -19,8 +19,10 @@
         <div class="p-4 text-center text-[10px] font-black uppercase text-stone-400 font-mono tracking-widest animate-pulse">
             Cargando...
         </div>
-    {:then recursos}
-        <FormDonacion {recursos} {form} />
+    {:then listaRecursos}
+        <FormDonacion {listaRecursos}
+        categoriasRecursos={data.categoriaRecurso}
+        {form} />
     {/await}
     {#await data.inventario }
         <div class="p-4 text-center text-[10px] font-black uppercase text-stone-400 font-mono tracking-widest animate-pulse">

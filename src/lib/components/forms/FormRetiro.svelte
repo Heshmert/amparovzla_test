@@ -51,7 +51,7 @@
 
 <div class="border-b border-stone-200 pb-2 mb-3 flex justify-between items-center font-mono">
   <h2 class="text-[10px] font-black uppercase tracking-wider text-stone-900">
-    📦 RECOLECCIÓN / EGRESO DE INVENTARIO
+   RECOLECCIÓN / EGRESO DE INVENTARIO
   </h2>
   {#if fase === 'cantidades'}
     <button 
@@ -124,7 +124,7 @@
           bind:value={metodoRetiro}
           class="w-full border border-stone-300 bg-white p-1 text-xs font-mono font-bold text-stone-900 focus:outline-none focus:border-stone-900 rounded-none uppercase"
         >
-          <option value="CONSUMO">CONSUMO / DISTRIBUCIÓN INTERNA</option>
+          <option value="CONSUMO">CONSUMO</option>
           <option value="MAL ESTADO">MAL ESTADO / VENCIDO / DAÑADO</option>
         </select>
       </div>

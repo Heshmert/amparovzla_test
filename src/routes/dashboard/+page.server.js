@@ -5,7 +5,6 @@ import { eq } from "drizzle-orm";
 
 export const load = async () => {
   return {
-    // Pasamos los valores del ENUM al frontend
     tipoEntidad: tipoEntidad.enumValues,
   };
 };
@@ -21,13 +20,11 @@ export const actions = {
 
     const data = await request.formData();
 
-    // Optimización: Extracción limpia
     const payload = {
       nombre: data.get("nombre")?.toString().trim(),
       tipo: data.get("tipo")?.toString(),
       telefonoPrincipal: data.get("telefonoPrincipal")?.toString().trim(),
-      telefonoSecundario:
-        data.get("telefonoSecundario")?.toString().trim() || null,
+      telefonoSecundario:data.get("telefonoSecundario")?.toString().trim() || null,
       emailContacto: data.get("emailContacto")?.toString().trim(),
       estado: data.get("estado")?.toString(),
       municipio: data.get("municipio")?.toString(),
@@ -60,7 +57,7 @@ export const actions = {
       if (existe.length > 0)
         return fail(400, { error: "Ya tienes una organización registrada." });
 
-      const codigoUnico = `Vzla-${Math.random().toString(36).substring(2, 6).toUpperCase()}`;
+      const codigoUnico = `VZLA-${Math.random().toString(36).substring(2, 6).toUpperCase()}`;
 
       // Insertar de forma directa y segura
       await db.insert(entidades).values({
@@ -70,7 +67,7 @@ export const actions = {
         latitud: payload.latitud ? parseFloat(payload.latitud) : null,
         longitud: payload.longitud ? parseFloat(payload.longitud) : null,
         verificado: false,
-        estatus: "ACTIVO", // <-- AQUÍ ESTABA EL ERROR. String directo y seguro.
+        estatus: "ACTIVO",
       });
 
       return { exito: true, codigo: codigoUnico };

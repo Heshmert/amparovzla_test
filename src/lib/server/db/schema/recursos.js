@@ -26,13 +26,9 @@ export const detallesRecursos = pgTable("detalles_recursos", {
   id: uuid("id")
     .default(sql`gen_random_uuid()`)
     .primaryKey(),
-  recursoId: uuid("recurso_id")
-    .notNull()
-    .references(() => recursos.id, { onDelete: "cascade" }),
-  principioActivo: text("principio_activo"),
   presentacion: text("presentacion"),
-  lote: text("lote"),
   vencimiento: date("vencimiento"),
+  estado: text("estado"),
   talla: text("talla"),
   genero: text("genero"),
   createdAt: timestamp("created_at").defaultNow().notNull(),

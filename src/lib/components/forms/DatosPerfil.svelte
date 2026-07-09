@@ -31,56 +31,57 @@
             </div>
         </div>
     {:then [perfil, profesiones, talentos, areasColaboracion]}
-        <!-- Bloque 1: Identidad y Capacidades Técnicas -->
         <div class="bg-white border border-stone-200 p-4 rounded-none">
             <h3 class="text-[10px] font-black uppercase tracking-wider text-stone-900 border-b border-stone-200 pb-2 mb-4">
-                1. Identidad y Capacidades Técnicas
+                Datos Personales
             </h3>
             
             <form method="POST" action="?/actualizarDatos" use:enhance class="space-y-4">
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div class="space-y-1">
                         <label for="nombre" class="text-[10px] font-black uppercase text-stone-600">Nombres</label>
-                        <input type="text" name="nombre" value={perfil.nombre || ''} required class="w-full border border-stone-200 bg-stone-50 p-2 text-xs font-medium uppercase focus:outline-none focus:border-stone-900 rounded-none" />
+                        <input type="text" name="nombre" value={perfil.nombre || ''} required />
                     </div>
                     <div class="space-y-1">
                         <label for="apellido" class="text-[10px] font-black uppercase text-stone-600">Apellidos</label>
-                        <input type="text" name="apellido" value={perfil.apellido || ''} required class="w-full border border-stone-200 bg-stone-50 p-2 text-xs font-medium uppercase focus:outline-none focus:border-stone-900 rounded-none" />
+                        <input type="text" name="apellido" value={perfil.apellido || ''} required />
                     </div>
                 </div>
 
                 <div class="space-y-1">
-                    <label for="cedula" class="text-[10px] font-black uppercase text-stone-400">Documento de Identidad (Cédula No Modificable)</label>
+                    <label for="cedula" class="text-[10px] font-black uppercase text-stone-400">Documento de Identidad</label>
                     <input type="text" id="cedula" value={perfil.cedula || ''} readonly class="w-full border border-stone-200 bg-stone-100 text-stone-500 p-2 text-xs font-mono font-bold rounded-none cursor-not-allowed" />
                     <label for="telefono" class="text-[10px] font-black uppercase text-stone-400">Número de Teléfono</label>
-                    <input type="text" id="telefono" name="telefono" value={perfil.telefono || ''} class="w-full border border-stone-200 bg-stone-50 p-2 text-xs font-medium uppercase focus:outline-none focus:border-stone-900 rounded-none" />
+                    <input type="text" id="telefono" name="telefono" value={perfil.telefono || ''} />
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
                     <div class="space-y-1">
                         <label for="tipoSangre" class="text-[10px] font-black uppercase text-stone-600">Grupo Sanguíneo</label>
-                        <select id="tipoSangre" name="tipoSangre" value={perfil.tipoSangre || ''} required class="w-full border border-stone-200 bg-stone-50 p-2 text-xs font-medium focus:outline-none focus:border-stone-900 rounded-none">
-                            <option value="">SELECCIONE</option>
-                            <option value="O+">O+</option><option value="O-">O-</option>
-                            <option value="A+">A+</option><option value="A-">A-</option>
-                            <option value="B+">B+</option><option value="B-">B-</option>
-                            <option value="AB+">AB+</option><option value="AB-">AB-</option>
+                        <select id="tipoSangre" name="tipoSangre" value={perfil.tipoSangre || ''} required >
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
                         </select>
                     </div>
                     <div class="space-y-1 sm:col-span-2">
-                        <label for="disponibilidad" class="text-[10px] font-black uppercase text-stone-600">Régimen de Disponibilidad Horaria</label>
-                        <select id="disponibilidad" name="disponibilidad" value={perfil.disponibilidad || 'Cualquiera'} class="w-full border border-stone-200 bg-stone-50 p-2 text-xs font-medium focus:outline-none focus:border-stone-900 rounded-none">
-                            <option value="Diurna">DIURNA / OPERACIONES TERRESTRES DIURNAS</option>
-                            <option value="Nocturna">NOCTURNA / MONITOREO DE GUARDIA AVANZADA</option>
-                            <option value="Cualquiera">COMPLETA / ALTA DISPONIBILIDAD INMEDIATA</option>
+                        <label for="disponibilidad" class="text-[10px] font-black uppercase text-stone-600">Disponibilidad</label>
+                        <select id="disponibilidad" name="disponibilidad" value={perfil.disponibilidad || 'Cualquiera'} >
+                            <option value="Diurna">DIURNA</option>
+                            <option value="Nocturna">NOCTURNA</option>
+                            <option value="Cualquiera">COMPLETA</option>
                         </select>
                     </div>
                 </div>
 
                 <div class="space-y-1">
-                    <label for="profesionId" class="text-[10px] font-black uppercase text-stone-600">Especialidad Profesional / Oficio</label>
-                    <select id="profesionId" name="profesionId" value={perfil.profesionId || ''} class="w-full border border-stone-200 bg-stone-50 p-2 text-xs font-medium focus:outline-none focus:border-stone-900 rounded-none">
-                        <option value="">SIN ASIGNACIÓN FORMAL</option>
+                    <label for="profesionId" class="text-[10px] font-black uppercase text-stone-600">Profesion / Oficio</label>
+                    <select id="profesionId" name="profesionId" value={perfil.profesionId || ''} >
                         {#each profesiones as prof}
                             <option value={prof.id}>{prof.nombre.toUpperCase()}</option>
                         {/each}
@@ -141,7 +142,7 @@
 
                 <div class="flex justify-end pt-2 border-t border-stone-200">
                     <button type="submit" class="bg-stone-900 hover:bg-stone-800 text-white font-black uppercase text-[10px] tracking-wider px-5 py-2.5 rounded-none transition">
-                        Guardar Capacidades Operativas
+                        GUARDAR
                     </button>
                 </div>
             </form>
@@ -150,22 +151,22 @@
         <!-- Bloque 2: Credenciales de Acceso -->
         <div class="bg-white border border-stone-200 p-4 rounded-none">
             <h3 class="text-[10px] font-black uppercase tracking-wider text-stone-900 border-b border-stone-200 pb-2 mb-4">
-                2. Credenciales de Identificación y Llaves de Acceso
+                2. Credenciales de la Cuenta
             </h3>
             <form method="POST" action="?/cambiarClave" use:enhance class="space-y-4">
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div class="space-y-1">
-                        <label for="correo" class="text-[10px] font-black uppercase text-stone-600">Correo Electrónico de Acceso</label>
+                        <label for="correo" class="text-[10px] font-black uppercase text-stone-600">Correo Electrónico</label>
                         <input type="email" id="correo" name="correo" value={perfil.correo || ''} required class="w-full border border-stone-200 bg-stone-50 p-2 text-xs focus:outline-none focus:border-stone-900 rounded-none font-mono" />
                     </div>
                     <div class="space-y-1">
-                        <label for="nuevaClave" class="text-[10px] font-black uppercase text-stone-600">Nueva Contraseña Operativa</label>
+                        <label for="nuevaClave" class="text-[10px] font-black uppercase text-stone-600">Nueva Contraseña</label>
                         <input type="password" id="nuevaClave" name="nuevaClave" placeholder="INGRESAR SOLO PARA MODIFICAR" class="w-full border border-stone-200 bg-stone-50 p-2 text-xs focus:outline-none focus:border-stone-900 rounded-none tracking-widest font-mono" />
                     </div>
                 </div>
                 <div class="flex justify-end pt-1">
                     <button type="submit" class="bg-blue-700 hover:bg-blue-800 text-white font-black uppercase text-[10px] tracking-wider px-4 py-2 rounded-none transition">
-                        Sincronizar Credenciales
+                        GUARDAR
                     </button>
                 </div>
             </form>

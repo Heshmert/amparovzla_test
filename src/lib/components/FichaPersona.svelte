@@ -1,10 +1,8 @@
 <script>
-    // Svelte 5 - Declaración de propiedades reactivas y bidireccionales
     let { persona, open = $bindable(false) } = $props();
     
     let dialogRef = $state(null);
 
-    // Svelte 5 - Sincronización reactiva con el elemento nativo <dialog> mediante un efecto de ciclo de vida
     $effect(() => {
         if (!dialogRef) return;
         if (open) {
@@ -59,7 +57,7 @@
                         </p>
                         <div class="text-stone-700 bg-stone-50 p-2.5 border border-stone-200 font-mono text-[11px] uppercase rounded-none">
                             <span class="font-sans font-black text-[9px] text-stone-400 block">Direccion Exacta:</span>
-                            "{persona.direccionExacta || 'SIN INDICACIÓN RECOLECTADA'}"
+                            "{persona.direccionExacta || 'SIN INDICACIÓN'}"
                         </div>
                     </div>
 

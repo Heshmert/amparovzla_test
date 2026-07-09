@@ -82,12 +82,12 @@
             <div class="space-y-1">
                 <label for="nombre" class="text-[10px] font-black uppercase text-stone-600">Nombre del Ciudadano *</label>
                 <input type="text" id="nombre" name="nombre" required value={form?.nombre ?? ''} oninput={romperVerificacion}
-                    class="w-full border border-stone-200 bg-stone-50 p-2 text-xs font-medium text-stone-900 uppercase focus:outline-none focus:border-stone-900 rounded-none" />
+                     />
             </div>
             <div class="space-y-1">
                 <label for="apellido" class="text-[10px] font-black uppercase text-stone-600">Apellido del Ciudadano *</label>
                 <input type="text" name="apellido" required value={form?.apellido ?? ''} oninput={romperVerificacion}
-                    class="w-full border border-stone-200 bg-stone-50 p-2 text-xs font-medium text-stone-900 uppercase focus:outline-none focus:border-stone-900 rounded-none" />
+                     />
             </div>
         </div>
 
@@ -95,12 +95,12 @@
             <div class="space-y-1">
                 <label for="cedula" class="text-[10px] font-black uppercase text-stone-600">Cédula de Identidad</label>
                 <input type="text" name="cedula" value={form?.cedula ?? ''} oninput={romperVerificacion}
-                    class="w-full border border-stone-200 bg-stone-50 p-2 text-xs font-medium text-stone-900 uppercase focus:outline-none focus:border-stone-900 rounded-none" />
+                     />
             </div>
             <div class="space-y-1">
                 <label for="genero" class="text-[10px] font-black uppercase text-stone-600">Género *</label>
                 <select name="genero" required value={form?.genero ?? ''}
-                    class="w-full border border-stone-200 bg-stone-50 p-2 text-xs font-bold text-stone-900 uppercase focus:outline-none focus:border-stone-900 rounded-none">
+                    >
                     <option value="">Seleccione Género...</option>
                     <option value="M">Masculino</option>
                     <option value="F">Femenino</option>
@@ -108,8 +108,7 @@
             </div>
             <div class="space-y-1">
                 <label for="fechaNacimiento" class="text-[10px] font-black uppercase text-stone-600">Fecha de Nacimiento</label>
-                <input type="date" name="fechaNacimiento" value={form?.fechaNacimiento ?? ''}
-                    class="w-full border border-stone-200 bg-stone-50 p-2 text-xs font-medium text-stone-900 focus:outline-none focus:border-stone-900 rounded-none" />
+                <input type="date" name="fechaNacimiento" value={form?.fechaNacimiento ?? ''}/>
             </div>
         </div>
 
@@ -117,7 +116,7 @@
             <div class="space-y-1">
                 <label for="estado" class="text-[10px] font-black uppercase text-stone-600">Estado *</label>
                 <select name="estado" bind:value={estadoSeleccionado} required
-                    class="w-full border border-stone-200 bg-stone-50 p-2 text-xs font-bold text-stone-900 uppercase focus:outline-none focus:border-stone-900 rounded-none">
+                    >
                     <option value="">Seleccione Estado...</option>
                     {#each venezuela as e}
                         <option value={e.estado}>{e.estado}</option>
@@ -127,7 +126,7 @@
             <div class="space-y-1">
                 <label for="municipio" class="text-[10px] font-black uppercase text-stone-600">Municipio</label>
                 <select name="municipio" bind:value={municipioSeleccionado}
-                    class="w-full border border-stone-200 bg-stone-50 p-2 text-xs font-bold text-stone-900 uppercase focus:outline-none focus:border-stone-900 rounded-none">
+                    >
                     <option value="">Seleccione Municipio...</option>
                     {#each municipios as m}
                         <option value={m.municipio}>{m.municipio}</option>
@@ -137,7 +136,7 @@
             <div class="space-y-1">
                 <label for="localidad" class="text-[10px] font-black uppercase text-stone-600">Localidad (Parroquia)</label>
                 <select name="localidad" bind:value={localidadSeleccionada}
-                    class="w-full border border-stone-200 bg-stone-50 p-2 text-xs font-bold text-stone-900 uppercase focus:outline-none focus:border-stone-900 rounded-none">
+                    >
                     <option value="">Seleccione Parroquia...</option>
                     {#each parroquias as p}
                         <option value={p}>{p}</option>
@@ -150,7 +149,7 @@
             <div class="space-y-1">
                 <label for="estatus" class="text-[10px] font-black uppercase text-stone-600">Estatus del Ciudadano *</label>
                 <select name="estatus" required value={form?.estatus ?? 'desaparecido'}
-                    class="w-full border border-stone-200 bg-stone-50 p-2 text-xs font-bold text-stone-900 uppercase focus:outline-none focus:border-stone-900 rounded-none">
+                    >
                     {#if estatusPersona}
                         {#each estatusPersona as estatus}
                             <option value={estatus}>{estatus}</option>
@@ -161,7 +160,7 @@
             <div class="space-y-1 md:col-span-2">
                 <label for="direccionExacta" class="text-[10px] font-black uppercase text-stone-600">Dirección Exacta</label>
                 <input type="text" name="direccionExacta" value={form?.direccionExacta ?? ''}
-                    class="w-full border border-stone-200 bg-stone-50 p-2 text-xs font-medium text-stone-900 uppercase focus:outline-none focus:border-stone-900 rounded-none" />
+                     />
             </div>
         </div>
 
@@ -192,7 +191,7 @@
         <div class="space-y-1">
             <label for="caracteristicas" class="text-[10px] font-black uppercase text-stone-600">Características de Reconocimiento / Notas *</label>
             <textarea name="caracteristicas" required value={form?.caracteristicas ?? ''}
-                class="w-full border border-stone-200 bg-stone-50 p-2 text-xs font-medium text-stone-900 uppercase focus:outline-none focus:border-stone-900 rounded-none h-20 resize-none"></textarea>
+                ></textarea>
         </div>
 
         <div class="pt-2">

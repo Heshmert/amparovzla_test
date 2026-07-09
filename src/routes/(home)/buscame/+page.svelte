@@ -5,7 +5,6 @@
 
     let { data, form = $bindable() } = $props();
 
-    // ESTADOS DE CONTROL GLOBAL Y MODAL
     let modalAbierto = $state(false);
     let personaSeleccionada = $state(null);
 
@@ -41,14 +40,9 @@
 </section>
 
 <section>
-<!-- Componente Formulario (pasamos form con bind para mantener use:enhance funcionando) -->
 <FormPersonas bind:form={form} estatusPersona={data.estatusPersona} />
 
-<!-- Componente de Tabla (le inyectamos el data global, coincidencias del form y el callback del modal) -->
 <TablaPersonas {data} coincidencias={form?.coincidencias} onVerExpediente={abrirModal} />
 </section>
 
-
-
-<!-- Componente Modal Ficha Persona -->
 <FichaPersona persona={personaSeleccionada} bind:open={modalAbierto} />

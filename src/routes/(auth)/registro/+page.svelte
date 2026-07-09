@@ -1,6 +1,7 @@
 <script>
     import { enhance } from '$app/forms';
     import { onMount } from 'svelte';
+    import Header from '$lib/components/Header.svelte';
 
     let { data, form } = $props();
     let cargando = $state(false);
@@ -51,6 +52,11 @@
     }
 </script>
 
+<Header
+    exito={form?.exito}
+    error={form?.error}
+    />
+
 <div class="grid grid-cols-1 md:grid-cols-2 w-full h-screen overflow-hidden">
     <div class="flex flex-col h-full overflow-y-auto p-6 md:p-12 bg-white border-b md:border-b-0 md:border-r border-stone-200 w-full order-1">
         <div class="max-w-md w-full mx-auto space-y-5">
@@ -62,18 +68,6 @@
                     <span class="text-[10px] font-black uppercase {pasoActual === 2 ? 'text-stone-900' : 'text-stone-400'}">02. Capacidades</span>
                 </div>
             </div>
-
-            {#if form?.error}
-                <div class="p-3 bg-red-50 border border-red-200 text-red-700 text-xs font-bold uppercase rounded-none">
-                    ERROR: {form.error}
-                </div>
-            {/if}
-
-            {#if form?.exito}
-                <div class="p-3 bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold uppercase rounded-none">
-                    ÉXITO: {form.exito}
-                </div>
-            {/if}
 
             <form method="POST" class="w-full overflow-hidden" use:enhance={manejarSubmit}>
                 <div class="flex transition-transform duration-500 ease-in-out" style="transform: translateX(-{(pasoActual - 1) * 100}%);">
@@ -94,7 +88,7 @@
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             <div class="space-y-1">
                                 <label for="id-card" class="text-[10px] font-black uppercase tracking-wider text-stone-600">Cédula</label>
-                                <input type="text" id="id-card" name="cedula" required placeholder="V-00000000" class="w-full border border-stone-300 bg-stone-50 p-2.5 text-xs font-medium text-stone-900 focus:outline-none focus:border-stone-900 rounded-none" />
+                                <input type="number" id="id-card" name="cedula" required placeholder="V-00000000" class="w-full border border-stone-300 bg-stone-50 p-2.5 text-xs font-medium text-stone-900 focus:outline-none focus:border-stone-900 rounded-none" />
                             </div>
                             <div class="space-y-1">
                                 <label for="phone" class="text-[10px] font-black uppercase tracking-wider text-stone-600">Teléfono</label>
@@ -119,7 +113,7 @@
 
                         <div class="space-y-1">
                             <label for="reg-email" class="text-[10px] font-black uppercase tracking-wider text-stone-600">Correo Electrónico</label>
-                            <input type="email" id="reg-email" name="correo" required placeholder="CORREO@DOMINIO.COM" class="w-full border border-stone-300 bg-stone-50 p-2.5 text-xs font-medium text-stone-900 focus:outline-none focus:border-stone-900 rounded-none uppercase" />
+                            <input type="email" id="reg-email" name="correo" required placeholder="CORREO@DOMINIO.COM" class="w-full border border-stone-300 bg-stone-50 p-2.5 text-xs font-medium text-stone-900 focus:outline-none focus:border-stone-900 rounded-none" />
                         </div>
                         <div class="space-y-1">
                             <label for="reg-password" class="text-[10px] font-black uppercase tracking-wider text-stone-600">Contraseña</label>
@@ -127,7 +121,7 @@
                         </div>
 
                         <button type="button" onclick={siguientePaso} class="w-full bg-stone-900 text-white p-3 text-xs font-bold uppercase tracking-wider hover:bg-stone-800 transition rounded-none mt-2">
-                            CONTINUAR A CAPACIDADES →
+                            CONTINUAR
                         </button>
                     </div>
 
@@ -135,7 +129,7 @@
                     <div class="min-w-full space-y-3 pl-2">
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             <div class="space-y-1">
-                                <label for="profesion" class="text-[10px] font-black uppercase tracking-wider text-stone-600">Profesión Principal</label>
+                                <label for="profesion" class="text-[10px] font-black uppercase tracking-wider text-stone-600">Ocupacion Principal</label>
                                 <select id="profesion" name="profesionId" required class="w-full border border-stone-300 bg-stone-50 p-2.5 text-xs font-medium text-stone-900 focus:outline-none focus:border-stone-900 rounded-none">
                                     <option value="">SELECCIONE...</option>
                                     {#await data.profesiones}
@@ -164,10 +158,14 @@
                                 <label for="tipoSangre" class="text-[10px] font-black uppercase tracking-wider text-stone-600">Tipo de Sangre</label>
                                 <select id="tipoSangre" name="tipoSangre" required class="w-full border border-stone-300 bg-stone-50 p-2.5 text-xs font-medium text-stone-900 focus:outline-none focus:border-stone-900 rounded-none">
                                     <option value="">SELECCIONE</option>
-                                    <option value="O+">O+</option><option value="O-">O-</option>
-                                    <option value="A+">A+</option><option value="A-">A-</option>
-                                    <option value="B+">B+</option><option value="B-">B-</option>
-                                    <option value="AB+">AB+</option><option value="AB-">AB-</option>
+                                    <option value="O+">O+</option>
+                                    <option value="O-">O-</option>
+                                    <option value="A+">A+</option>
+                                    <option value="A-">A-</option>
+                                    <option value="B+">B+</option>
+                                    <option value="B-">B-</option>
+                                    <option value="AB+">AB+</option>
+                                    <option value="AB-">AB-</option>
                                 </select>
                             </div>
                         </div>
@@ -175,7 +173,7 @@
                         <!-- SECCIÓN TALENTOS -->
                         <div class="border-t border-stone-200 pt-3">
                             <div class="flex justify-between items-center mb-2">
-                                <span class="text-[10px] font-black uppercase text-stone-900 tracking-tight">Talentos Prioritarios de Emergencia</span>
+                                <span class="text-[10px] font-black uppercase text-stone-900 tracking-tight">Habilidades</span>
                                 <span class="text-[9px] font-mono font-bold {selectedTalents.length === 4 ? 'text-amber-700' : 'text-stone-500'}">
                                     [{selectedTalents.length}/4 ASIGNADOS]
                                 </span>
@@ -205,7 +203,7 @@
                         <!-- SECCIÓN ÁREAS -->
                         <div class="border-t border-stone-200 pt-3">
                             <div class="flex justify-between items-center mb-2">
-                                <span class="text-[10px] font-black uppercase text-stone-900 tracking-tight">Áreas de Cobertura y Despliegue</span>
+                                <span class="text-[10px] font-black uppercase text-stone-900 tracking-tight">Áreas de Cobertura</span>
                                 <span class="text-[9px] font-mono font-bold {selectedAreas.length === 4 ? 'text-amber-700' : 'text-stone-500'}">
                                     [{selectedAreas.length}/4 ASIGNADAS]
                                 </span>
@@ -234,7 +232,7 @@
 
                         <div class="grid grid-cols-3 gap-2 pt-2">
                             <button type="button" onclick={pasoAnterior} class="bg-stone-200 text-stone-800 p-3 text-xs font-bold uppercase tracking-wider hover:bg-stone-300 transition rounded-none">
-                                ← VOLVER
+                                VOLVER
                             </button>
                             <button type="submit" disabled={cargando} class="col-span-2 bg-stone-900 text-white p-3 text-xs font-bold uppercase tracking-wider hover:bg-stone-800 transition rounded-none disabled:bg-stone-400">
                                 {cargando ? 'REGISTRANDO...' : 'COMPLETAR REGISTRO'}

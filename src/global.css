@@ -4,6 +4,10 @@
 
 @layer components {
     /* ─── BASE DEL BOTÓN (Estructura y Tipografía) ─── */
+    input, select, textarea{
+        @apply w-full border border-stone-200 bg-stone-50 p-2 text-xs font-medium text-stone-900 uppercase focus:outline-none focus:border-stone-900 rounded-none
+    }
+
     .btn {
         @apply inline-flex items-center justify-center px-8 py-3.5 text-[10px] font-black uppercase tracking-widest rounded-none transition-colors duration-200 cursor-pointer text-center;
     }

@@ -23,7 +23,7 @@
 
         // { nombre: 'Personal', ruta: '/dashboard/rescate/personal', roles: ['ENCARGADO'] },
 
-        { nombre: 'Personas', ruta: '/dashboard/personas', roles: ['ENCARGADO', 'VOLUNTARIO', 'ADMIN'] },
+        { nombre: 'Buscame', ruta: '/dashboard/personas', roles: ['ENCARGADO', 'VOLUNTARIO', 'ADMIN'] },
         { nombre: 'Vacantes', ruta: '/dashboard/vacantes', roles: ['VOLUNTARIO'] },
 
     ];
@@ -69,7 +69,7 @@
             
             <form method="POST" action="/dashboard?/logout" class="w-full pt-1">
                 <button type="submit" class="block w-full text-center p-2.5 text-xs font-bold uppercase border border-red-900/60 bg-red-950/40 text-red-400 hover:bg-red-900/40 transition rounded-none">
-                    Salir de la Plataforma
+                    Cerrar Sesión
                 </button>
             </form>
         </div>
@@ -126,7 +126,7 @@
 
                 <form method="POST" action="/dashboard?/logout" class="w-full pt-1">
                     <button type="submit" class="w-full p-3 text-center text-xs font-bold uppercase border border-red-900 bg-red-950/40 text-red-400 rounded-none">
-                        Cerrar Sesión Activa
+                        Cerrar Sesión
                     </button>
                 </form>
             </div>

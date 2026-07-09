@@ -128,8 +128,6 @@
     {/if}
 </dialog>
 
-
-    
     <div class="bg-white border border-stone-200 p-6 md:p-8 rounded-none shadow-xs space-y-4 md:space-y-0 md:flex md:items-start md:justify-between">
         <div class="space-y-2">
             <h1 class="text-2xl md:text-4xl font-black text-stone-900 uppercase tracking-tight">
@@ -139,11 +137,10 @@
                 Plataforma para la coordinación civil de contingencias. Desde aquí puedes registrar aportes, gestionar solicitudes reportar novedades en tiempo real.
             </p>
         </div>
-        
         <div class="pt-2 md:pt-0 shrink-0">
             {#if data.user && data.user.rol !== 'ENCARGADO' && data.user.rol !== 'ADMIN'}
                 <button onclick={abrirModal} type="button" class="bg-stone-900 text-white font-black uppercase text-xs p-3 hover:bg-stone-800 transition rounded-none">
-    + Postular Organización
+            Postular Organización
 </button>
             {/if}
         </div>
@@ -161,13 +158,6 @@
         
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             
-            <div class="p-4 bg-stone-850 border border-stone-800 space-y-2">
-                <div class="flex items-center justify-between">
-                    <span class="text-[10px] font-black uppercase tracking-wider text-blue-400">Organismos de Salud</span>
-                </div>
-                <p class="text-xs font-bold text-stone-200">CENTROS DE SALUD</p>
-                <p class="text-[11px] text-stone-400 leading-normal">Camas disponibles, insumos quirúrgicos críticos y estatus de plantas eléctricas en hospitales.</p>
-            </div>
 
             <div class="p-4 bg-stone-850 border border-stone-800 space-y-2">
                 <div class="flex items-center justify-between">
@@ -177,20 +167,14 @@
                 <p class="text-[11px] text-stone-400 leading-normal">Refugios para mascotas extraviadas, atención veterinaria de emergencia y bancos de alimento animal.</p>
             </div>
 
-            <div class="p-4 bg-stone-850 border border-stone-800 space-y-2">
-                <div class="flex items-center justify-between">
-                    <span class="text-[10px] font-black uppercase tracking-wider text-red-400">Búsqueda Crítica</span>
-                </div>
-                <p class="text-xs font-bold text-stone-200">ENCUENTRAME</p>
-                <p class="text-[11px] text-stone-400 leading-normal">Reporte centralizado de personas no localizadas y cruce con el censo de pacientes e ingresados.</p>
-            </div>
+
 
             <div class="p-4 bg-stone-850 border border-stone-800 space-y-2">
                 <div class="flex items-center justify-between">
                     <span class="text-[10px] font-black uppercase tracking-wider text-purple-400">Control</span>
                 </div>
                 <p class="text-xs font-bold text-stone-200">GESTION DE SERVICIOS</p>
-                <p class="text-[11px] text-stone-400 leading-normal">ofrece servicios de transporte, ayuda, rescate entre otros</p>
+                <p class="text-[11px] text-stone-400 leading-normal">ofrece servicios de salud mental, entretenimiento, rescate entre otros</p>
             </div>
 
         </div>

@@ -1,18 +1,31 @@
 <script>
     let { titulo, descripcion, info = "", error = null, exito = null } = $props();
     let dialogRef = $state();
-
-    $effect(() => {
-        console.log("Header props recibidos:", { error, exito });
-    });
     
+    // Estado local para controlar la visibilidad
+    let visible = $state(false);
+
+    // Efecto para manejar el temporizador cada vez que cambia el error o exito
+    $effect(() => {
+        if (error || exito) {
+            visible = true;
+            const timer = setTimeout(() => {
+                visible = false;
+            }, 8000);
+            
+            // Limpieza del timer si el componente se destruye o cambia el prop
+            return () => clearTimeout(timer);
+        } else {
+            visible = false;
+        }
+    });
 </script>
+
 <div class="mb-8 border-b border-stone-200 pb-6">
     <div class="flex items-start justify-between gap-4">
         <h1 class="text-base md:text-2xl font-bold md:font-black text-stone-900 uppercase tracking-tighter">
             {titulo}
         </h1>
-        
         {#if info}
             <button 
                 onclick={() => dialogRef.showModal()}
@@ -45,18 +58,12 @@
     </dialog>
 </div>
 
-{#if error || exito}
+{#if visible && (error || exito)}
     <div class="fixed top-4 right-4 z-50 w-auto min-w-[250px] border-l-4 border-r-1 border-t-1 border-b-1 shadow-2xl p-4 transition-all duration-300
         {error ? 'bg-red-700 border-red-900' : 'bg-emerald-700 border-emerald-900'}">
         
-        {#if error}
-            <p class="text-[11px] font-black uppercase text-white tracking-widest">
-                {error}
-            </p>
-        {:else if exito}
-            <p class="text-[11px] font-black uppercase text-white tracking-widest">
-                {exito}
-            </p>
-        {/if}
+        <p class="text-[11px] font-black uppercase text-white tracking-widest">
+            {error || exito}
+        </p>
     </div>
 {/if}
