@@ -72,16 +72,14 @@ const manejarSubmit = () => {
                 <form method="POST" class="space-y-4" use:enhance={manejarSubmit}>
                     <div class="space-y-1">
                         <label for="email" class="text-[10px] font-bold uppercase tracking-wider text-stone-600">Correo Electrónico</label>
-                        <input type="email" id="email" name="correo" required placeholder="NOMBRE@CORREO.COM"
-                            class="w-full border border-stone-300 bg-stone-50 p-3 text-xs font-medium text-stone-900 focus:outline-none focus:border-blue-800 rounded-none lowercase" />
+                        <input type="email" id="email" name="correo" required placeholder="NOMBRE@CORREO.COM"class=" lowercase" />
                     </div>
 
                     <div class="space-y-1">
                         <div class="flex justify-between items-center">
                             <label for="password" class="text-[10px] font-bold uppercase tracking-wider text-stone-600">Contraseña</label>
                         </div>
-                        <input type="password" id="password" name="password" required placeholder="••••••••"
-                            class="w-full border border-stone-300 bg-stone-50 p-3 text-xs font-medium text-stone-900 focus:outline-none focus:border-blue-800 rounded-none" />
+                        <input type="password" id="password" name="password" required placeholder="••••••••" />
                     </div>
 
                     <button type="submit" disabled={cargando}

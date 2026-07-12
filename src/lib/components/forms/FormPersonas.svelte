@@ -76,7 +76,7 @@
                 }
             };
         }} 
-        class="bg-white p-6 border border-stone-200 rounded-none space-y-4 mt-6 font-sans"
+        class="bg-white p-6 border border-stone-200 rounded-none space-y-4"
     >
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div class="space-y-1">

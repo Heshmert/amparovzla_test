@@ -114,7 +114,7 @@
 
                         <div class="space-y-1">
                             <label for="reg-email" class="text-[10px] font-black uppercase tracking-wider text-stone-600">Correo Electrónico</label>
-                            <input type="email" id="reg-email" name="correo" required placeholder="CORREO@DOMINIO.COM"  />
+                            <input type="email" id="reg-email" name="correo" required placeholder="CORREO@DOMINIO.COM" class="lowercase" />
                         </div>
                         <div class="space-y-1">
                             <label for="reg-password" class="text-[10px] font-black uppercase tracking-wider text-stone-600">Contraseña</label>
@@ -244,7 +244,7 @@
                 </div>
             </form>
 
-            <div class="text-center">
+            <div class="text-center pt-4">
                 <p class="text-xs text-stone-500 font-medium">
                     ¿YA TIENES CUENTA?
                     <a href="/ingresar" class="text-stone-900 font-bold uppercase hover:underline block md:inline md:ml-1">INICIA SESIÓN AQUÍ</a>

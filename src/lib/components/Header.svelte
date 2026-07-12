@@ -21,9 +21,9 @@
     });
 </script>
 
-<div class="mb-8 border-b border-stone-200 pb-6">
+<div class="pb-5">
     <div class="flex items-start justify-between gap-4">
-        <h1 class="text-base md:text-2xl font-bold md:font-black text-stone-900 uppercase tracking-tighter">
+        <h1 class="text-2xl md:text-3xl font-bold md:font-black text-stone-900 uppercase tracking-tighter">
             {titulo}
         </h1>
         {#if info}
@@ -39,7 +39,7 @@
     {#if descripcion}
         <p class="mt-2 text-[10px] md:text-xs text-stone-500 font-medium max-w-2xl">
             {descripcion}
-        </p>
+        </p >
     {/if}
 
     <dialog 
