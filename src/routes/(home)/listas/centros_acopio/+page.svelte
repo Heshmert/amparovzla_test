@@ -13,8 +13,9 @@
 
 <section id="hero" class="relative w-full border min-h-[70vh] flex items-center rounded-none overflow-hidden bg-stone-900">
     <div class="absolute inset-0 bg-[url('/hero.avif')] bg-cover bg-center opacity-30 mix-blend-luminosity"></div>
-    <div class="absolute inset-0 bg-blue-950/40 backdrop-blur-xs"></div>
-    <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 text-white">
+
+    <div class="absolute inset-0 bg-blue-950/60"></div>
+        <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 text-white">
         <div class="lg:col-span-8 p-6 md:p-10 flex flex-col justify-center space-y-4 border-b lg:border-b-0 lg:border-r border-stone-800">
             <div class="space-y-1">
                 <h1 class="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-none text-stone-50">

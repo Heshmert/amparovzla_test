@@ -2,9 +2,10 @@ import { pgEnum } from "drizzle-orm/pg-core";
 
 export const estatusProceso = pgEnum("estatusproceso", [
   "PENDIENTE",
+  "EN PROCESO",
   "APROBADO",
   "RECHAZADO",
-  "ENTREGADO",
+  "FINZALIZADO",
   "CANCELADO",
 ]);
 
@@ -23,8 +24,6 @@ export const estatusEntidad = pgEnum("estatusentidad", [
   "RECIBIENDO",
   "CERRADO",
 ]);
-
-
 
 export const categoriaRecurso = pgEnum("categoriarecurso", [
   "OTROS",

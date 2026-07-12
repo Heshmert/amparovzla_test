@@ -7,14 +7,13 @@ import {
 } from '$app/forms';
 import Header from '$lib/components/Header.svelte';
 
-// Capturamos el estado del formulario usando las Runes de Svelte 5
 let {
     form
 } = $props();
 
 let cargando = $state(false);
 let imagenActual = $state(0);
-const imagenes = ['login(1).jpeg', 'login(2).jpeg'];
+const imagenes = ['/img/auth/ingreso_1.jpg', '/img/auth/ingreso_2.jpg'];
 
 onMount(() => {
     const interval = setInterval(() => {
@@ -40,20 +39,20 @@ const manejarSubmit = () => {
         {#each imagenes as img, i}
         <div class="absolute inset-0 transition-opacity duration-1000 ease-in-out {imagenActual === i ? 'opacity-100' : 'opacity-0'}">
             <img src={img} alt="Fondo de Login" class="w-full h-full object-cover" />
-            <div class="absolute inset-0 bg-blue-900/80"></div>
+            <div class="absolute inset-0 bg-blue-950/60"></div>
         </div>
         {/each}
 
         <div class="relative z-10 flex flex-col justify-between h-full">
             <div class="flex items-center gap-2">
-                <a href="/" class="text-[11px] font-bold uppercase tracking-wider text-blue-200">
-                    Amparo Venezuela
+                <a href="/" class="text-[11px] flex gap-2 font-bold uppercase tracking-wider text-white">
+                   <img src="img/logos/asterisco.png" alt="amparovzla" width="15"/> Amparo Venezuela
                 </a>
             </div>
 
             <div class="space-y-4">
                 <h2 class="text-4xl font-black uppercase tracking-tight leading-tight">
-                    Juntos podemos asegurar que la ayuda llegue a quienes más lo necesitan
+                    <span class="text-6xl">Juntos podemos</span>  asegurar que la ayuda llegue a quienes más lo necesitan
                 </h2>
                 <p class="text-xs text-blue-100/80 font-medium max-w-sm leading-relaxed">
                     Ingresa a tu panel de control para gestionar stock, reportar novedades en tiempo real y asegurar que la ayuda civil llegue de forma transparente a las comunidades más vulnerables.
@@ -74,7 +73,7 @@ const manejarSubmit = () => {
                     <div class="space-y-1">
                         <label for="email" class="text-[10px] font-bold uppercase tracking-wider text-stone-600">Correo Electrónico</label>
                         <input type="email" id="email" name="correo" required placeholder="NOMBRE@CORREO.COM"
-                            class="w-full border border-stone-300 bg-stone-50 p-3 text-xs font-medium text-stone-900 focus:outline-none focus:border-blue-800 rounded-none uppercase" />
+                            class="w-full border border-stone-300 bg-stone-50 p-3 text-xs font-medium text-stone-900 focus:outline-none focus:border-blue-800 rounded-none lowercase" />
                     </div>
 
                     <div class="space-y-1">

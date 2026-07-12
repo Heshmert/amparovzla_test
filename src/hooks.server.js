@@ -30,6 +30,7 @@ export async function handle({ event, resolve }) {
         correo: String(payload.correo),
         rol: String(payload.rol).toUpperCase(),
         tieneVehiculo: Boolean(payload.tieneVehiculo),
+        entidadId: payload.entidadId ? String(payload.entidadId) : null,
         tipoEntidad: payload.tipoEntidad
           ? String(payload.tipoEntidad).toUpperCase()
           : null,

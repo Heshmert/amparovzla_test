@@ -1,0 +1,26 @@
+[
+  {
+    "rutaImagen": "/img/hero_info.jpg",
+    "sitio": "",
+    "autor": "Pexels / @nombre_fotografo",
+    "fecha": "",
+    "hora": "",
+    "descripcion": ""
+  },
+  {
+    "rutaImagen": "/img/hero_index.jpg",
+    "sitio": "",
+    "autor": "Pexels / @nombre_fotografo",
+    "fecha": "",
+    "hora": "",
+    "descripcion": ""
+  },
+    {
+    "rutaImagen": "/img/hero_buscame.jpg",
+    "sitio": "",
+    "autor": "Pexels / @nombre_fotografo",
+    "fecha": "",
+    "hora": "",
+    "descripcion": ""
+  }  
+]

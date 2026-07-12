@@ -19,9 +19,9 @@
 <!-- ─── HERO: LA PROMESA (ÍNTEGRO) ─── -->
 <section id="hero" class="relative w-full min-h-screen flex items-center overflow-hidden border-b border-stone-200">
     <!-- IMAGEN DE FONDO CON ENTINTADO -->
-    <div class="absolute inset-0 bg-[url('/hero.avif')] bg-cover bg-center"></div>
-    <div class="absolute inset-0 bg-slate-950/70"></div>
+    <div class="absolute inset-0 bg-[url('/img/hero_info.jpg')] bg-cover bg-center"></div>
 
+    <div class="absolute inset-0 bg-blue-950/60"></div>
     <!-- CONTENIDO -->
     <div class="relative z-10 px-6 md:px-20 w-full max-w-6xl">
         <div class="max-w-4xl space-y-8">
@@ -30,10 +30,8 @@
                 <span class="text-amber-400">Ayuda Humana</span>
             </h1>
 
-            <div class="h-1 w-24 bg-blue-600"></div>
-
             <p class="text-sm md:text-lg text-stone-100 font-medium leading-relaxed max-w-2xl">
-                AmparoVzla es nuestra promisa, una herramienta técnica, abierta y sin fines de lucro, diseñada para garantizar que cada esfuerzo logístico, cada insumo y cada mano amiga llegue exactamente donde hace falta para proteger la vida y la dignidad en nuestra nación.
+                AmparoVZLA es nuestra promisa, una herramienta técnica, abierta y sin fines de lucro, diseñada para garantizar que cada esfuerzo logístico, cada insumo y cada mano amiga llegue exactamente donde hace falta para proteger la vida y la dignidad en nuestra nación.
             </p>
 
         </div>

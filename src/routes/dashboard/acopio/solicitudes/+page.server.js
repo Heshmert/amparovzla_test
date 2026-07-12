@@ -1,188 +1,111 @@
-import { fail, redirect } from '@sveltejs/kit';
-import { db } from '$lib/server/db';
-import { entidades, solicitudesRecursos, recursos } from '$lib/server/db/schema';
-import { eq, ne, and, desc } from 'drizzle-orm';
+// src/routes/dashboard/acopio/solicitudes/+page.server.js
+import { db } from "$lib/server/db";
+import { solicitudesRecursos, recursos, entidades, categoriaRecurso } from "$lib/server/db/schema";
+import { desc, isNull, eq, inArray, and } from "drizzle-orm";
+import { aliasedTable } from "drizzle-orm";
+import { fail } from "@sveltejs/kit";
 
-export const load = ({ locals, url }) => {
-    if (!locals.user) throw redirect(302, '/login');
+const entidadesRemitentes = aliasedTable(entidades, "entidades_remitentes");
 
-    // Control de paginación masiva activa (100 elementos por página)
-    const pagina = Math.max(1, parseInt(url.searchParams.get('page') || '1'));
-    const limite = 100;
-    const offset = (pagina - 1) * limite;
+export function load({ locals }) {
+  const miEntidadId = locals.user?.entidadId || null;
 
-    // Catálogo maestro para los selectores reactivos del formulario
-    const recursosPromise = db.select().from(recursos).orderBy(recursos.nombre);
-
-    // Requerimientos Globales Activos (otros centros) con proyección total de campos de contacto y dirección
-    const globalesActivasPromise = db
-        .select({
-            id: solicitudesRecursos.id,
-            codigo: solicitudesRecursos.codigo,
-            lote: solicitudesRecursos.lote,
-            estatus: solicitudesRecursos.estatus,
-            cantidad: solicitudesRecursos.cantidad,
-            descripcion: solicitudesRecursos.descripcion,
-            createdAt: solicitudesRecursos.createdAt,
-            recursoNombre: recursos.nombre,
-            recursoCategoria: recursos.categoria,
-            centroNombre: entidades.nombre,
-            estado: entidades.estado,
-            municipio: entidades.municipio,
-            localidad: entidades.localidad,
-            direccionExacta: entidades.direccionExacta,
-            latitud: entidades.latitud,
-            longitud: entidades.longitud,
-            telefonoPrincipal: entidades.telefonoPrincipal,
-            telefonoSecundario: entidades.telefonoSecundario,
-            emailContacto: entidades.emailContacto
-        })
-        .from(solicitudesRecursos)
-        .innerJoin(entidades, eq(solicitudesRecursos.entidadId, entidades.id))
-        .innerJoin(recursos, eq(solicitudesRecursos.recursoId, recursos.id))
-        .where(
-            and(
-                eq(solicitudesRecursos.estatus, 'PENDIENTE'),
-                ne(entidades.encargadoId, locals.user.id)
-            )
-        )
-        .orderBy(desc(solicitudesRecursos.createdAt))
-        .limit(limite)
-        .offset(offset);
-
-    // Solicitudes del centro del usuario en sesión
-    const misSolicitudesPromise = db
-        .select({
-            id: solicitudesRecursos.id,
-            codigo: solicitudesRecursos.codigo,
-            lote: solicitudesRecursos.lote,
-            estatus: solicitudesRecursos.estatus,
-            cantidad: solicitudesRecursos.cantidad,
-            descripcion: solicitudesRecursos.descripcion,
-            createdAt: solicitudesRecursos.createdAt,
-            recursoNombre: recursos.nombre,
-            recursoCategoria: recursos.categoria,
-            centroNombre: entidades.nombre,
-            estado: entidades.estado,
-            municipio: entidades.municipio,
-            localidad: entidades.localidad,
-            direccionExacta: entidades.direccionExacta,
-            latitud: entidades.latitud,
-            longitud: entidades.longitud,
-            telefonoPrincipal: entidades.telefonoPrincipal,
-            telefonoSecundario: entidades.telefonoSecundario,
-            emailContacto: entidades.emailContacto
-        })
-        .from(solicitudesRecursos)
-        .innerJoin(entidades, eq(solicitudesRecursos.entidadId, entidades.id))
-        .innerJoin(recursos, eq(solicitudesRecursos.recursoId, recursos.id))
-        .where(eq(entidades.encargadoId, locals.user.id))
-        .orderBy(desc(solicitudesRecursos.createdAt))
-        .limit(limite)
-        .offset(offset);
-
-    // Historial Global de Solicitudes ya procesadas y finalizadas
-    const finalizadasPromise = db
-        .select({
-            id: solicitudesRecursos.id,
-            codigo: solicitudesRecursos.codigo,
-            lote: solicitudesRecursos.lote,
-            estatus: solicitudesRecursos.estatus,
-            cantidad: solicitudesRecursos.cantidad,
-            createdAt: solicitudesRecursos.createdAt,
-            recursoNombre: recursos.nombre,
-            recursoCategoria: recursos.categoria,
-            centroNombre: entidades.nombre,
-            estado: entidades.estado,
-            municipio: entidades.municipio,
-            localidad: entidades.localidad,
-            direccionExacta: entidades.direccionExacta,
-            latitud: entidades.latitud,
-            longitud: entidades.longitud,
-            telefonoPrincipal: entidades.telefonoPrincipal,
-            telefonoSecundario: entidades.telefonoSecundario,
-            emailContacto: entidades.emailContacto
-        })
-        .from(solicitudesRecursos)
-        .innerJoin(entidades, eq(solicitudesRecursos.entidadId, entidades.id))
-        .innerJoin(recursos, eq(solicitudesRecursos.recursoId, recursos.id))
-        .where(eq(solicitudesRecursos.estatus, 'FINALIZADA'))
-        .orderBy(desc(solicitudesRecursos.createdAt))
-        .limit(limite)
-        .offset(offset);
-
-    return {
-        pagina,
-        streamed: {
-            recursos: recursosPromise,
-            globalesActivas: globalesActivasPromise,
-            misSolicitudes: misSolicitudesPromise,
-            finalizadas: finalizadasPromise
-        }
-    };
-};
+  return {
+    miEntidadId,
+    recursos: db.select().from(recursos).orderBy(recursos.nombre).execute(),
+    categoriaRecurso: categoriaRecurso.enumValues,
+    solicitudes: db
+      .select({
+        id: solicitudesRecursos.id,
+        codigo: solicitudesRecursos.codigo,
+        lote: solicitudesRecursos.lote,
+        estatus: solicitudesRecursos.estatus,
+        cantidad: solicitudesRecursos.cantidad,
+        descripcion: solicitudesRecursos.descripcion,
+        createdAt: solicitudesRecursos.createdAt,
+        recursoNombre: recursos.nombre,
+        recursoCategoria: recursos.categoria, 
+        solicitanteCod: entidades.codigo, 
+        solicitanteTipo: entidades.tipo,
+        solicitanteId: solicitudesRecursos.solicitanteId,
+        remitenteId: solicitudesRecursos.remitenteId,
+        remitenteCod: entidadesRemitentes.codigo
+      })
+      .from(solicitudesRecursos)
+      .innerJoin(recursos, eq(solicitudesRecursos.recursoId, recursos.id))
+      .innerJoin(entidades, eq(solicitudesRecursos.solicitanteId, entidades.id))
+      .leftJoin(entidadesRemitentes, eq(solicitudesRecursos.remitenteId, entidadesRemitentes.id))
+      .where(isNull(solicitudesRecursos.deletedAt))
+      .orderBy(desc(solicitudesRecursos.createdAt))
+      .execute()
+  };
+}
 
 export const actions = {
-    crearSolicitudAgrupada: async ({ request, locals }) => {
-        if (!locals.user) return fail(401, { error: 'No autorizado.' });
+  crearSolicitudAgrupada: async ({ request, locals }) => {
+    const formData = await request.formData();
+    const recursoIds = formData.getAll("recursoId");
+    const cantidades = formData.getAll("cantidad");
+    const descripcion = formData.get("descripcion");
 
-        const [entidad] = await db.select().from(entidades).where(eq(entidades.encargadoId, locals.user.id)).limit(1);
-        if (!entidad) return fail(400, { error: 'No dispone de un centro o entidad vinculada.' });
+    if (!recursoIds.length) return fail(400, { error: "El lote debe contener al menos un recurso." });
 
-        const data = await request.formData();
-        const recursosIds = data.getAll('recursoId');
-        const cantidades = data.getAll('cantidad');
-        const descripcion = data.get('descripcion')?.toString().trim() || null;
+    const miEntidadId = locals.user?.entidadId; 
+    if (!miEntidadId) return fail(403, { error: "No tiene entidad asignada." });
 
-        if (!recursosIds.length) {
-            return fail(400, { error: 'El lote debe contener al menos un requerimiento.' });
-        }
+    const numeroLote = Math.floor(100000 + Math.random() * 900000);
 
-        try {
-            const numeroLote = Math.floor(Date.now() / 1000);
-            const codigoBase = `REQ-${numeroLote}`;
+    try {
+      const registros = recursoIds.map((recursoId, index) => ({
+        codigo: `REQ-${numeroLote}-${index + 1}`,
+        lote: numeroLote,
+        solicitanteId: miEntidadId,
+        recursoId: recursoId,
+        cantidad: parseInt(cantidades[index], 10),
+        descripcion: descripcion || null,
+        estatus: "PENDIENTE"
+      }));
 
-            for (let i = 0; i < recursosIds.length; i++) {
-                const rId = recursosIds[i].toString();
-                const cant = parseInt(cantidades[i].toString());
-
-                if (!rId || isNaN(cant) || cant <= 0) continue;
-
-                await db.insert(solicitudesRecursos).values({
-                    codigo: `${codigoBase}-${i + 1}`,
-                    lote: numeroLote,
-                    estatus: 'PENDIENTE',
-                    entidadId: entidad.id,
-                    recursoId: rId,
-                    cantidad: cant,
-                    descripcion: descripcion
-                });
-            }
-
-            return { exito: 'Lote de requerimientos guardado e indexado de manera exitosa.' };
-        } catch (err) {
-            console.error(err);
-            return fail(500, { error: 'Fallo crítico de base de datos al procesar el lote.' });
-        }
-    },
-
-    finalizarLote: async ({ request, locals }) => {
-        if (!locals.user) return fail(401, { error: 'No autorizado.' });
-
-        const data = await request.formData();
-        const loteId = parseInt(data.get('lote')?.toString());
-
-        if (isNaN(loteId)) return fail(400, { error: 'Identificador de lote corrupto o ausente.' });
-
-        try {
-            await db.update(solicitudesRecursos)
-                .set({ estatus: 'FINALIZADA', updatedAt: new Date() })
-                .where(eq(solicitudesRecursos.lote, loteId));
-
-            return { exito: 'El lote y sus líneas asociadas han cambiado a estatus FINALIZADO.' };
-        } catch (err) {
-            console.error(err);
-            return fail(500, { error: 'No se pudo actualizar el estado físico del lote.' });
-        }
+      await db.insert(solicitudesRecursos).values(registros);
+      return { exito: "Solicitud Creada" };
+    } catch (err) {
+      console.error(err);
+      return fail(500, { error: "Error al registrar lote." });
     }
+  },
+  responderItems: async ({ request, locals }) => {
+    const formData = await request.formData();
+    const itemIds = formData.getAll('itemIds');
+    const miEntidadId = locals.user?.entidadId || null;
+
+    if (!miEntidadId || itemIds.length === 0) return { success: false };
+
+    for (const id of itemIds) {
+      await db.update(solicitudesRecursos)
+        .set({ 
+          estatus: 'EN PROCESO', 
+          remitenteId: miEntidadId 
+        })
+        .where(eq(solicitudesRecursos.id, id))
+        .execute();
+    }
+
+    return { success: true };
+  },
+
+  cancelarLote: async ({ request }) => {
+    const formData = await request.formData();
+    const loteId = formData.get('lote');
+
+    if (!loteId) return { success: false };
+
+    await db.update(solicitudesRecursos)
+      .set({ 
+        estatus: 'CANCELADO', 
+        deletedAt: new Date() })
+      .where(eq(solicitudesRecursos.lote, loteId))
+      .execute();
+
+    return { success: true };
+  }
 };

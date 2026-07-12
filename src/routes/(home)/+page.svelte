@@ -36,7 +36,7 @@
 
 <section id="hero" class="relative w-full min-h-screen border-b border-stone-200 overflow-hidden rounded-none">
     <!-- IMAGEN DE FONDO -->
-    <div class="absolute inset-0 bg-[url('/hero.avif')] bg-cover bg-center"></div>
+    <div class="absolute inset-0 bg-[url('/img/hero_index.jpg')] bg-cover bg-center"></div>
     <div class="absolute inset-0 bg-blue-950/60"></div>
 
     <!-- CONTENIDO -->
