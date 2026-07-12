@@ -31,7 +31,5 @@
 <TablaPersonas {data} coincidencias={form?.coincidencias} onVerExpediente={abrirModal} />
 
 
-
-
 <!-- Componente Modal Ficha Persona -->
 <FichaPersona persona={personaSeleccionada} bind:open={modalAbierto} />

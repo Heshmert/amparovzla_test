@@ -1,0 +1,26 @@
+[
+  {
+    "titulo": "Buscador de refugios para animales activo",
+    "descripcion": "Agregamos la cartelera para reportar y conseguir mascotas perdidas en zonas afectadas. Ya se pueden revisar los puntos veterinarios abiertos.",
+    "fecha": "13/07/2026",
+    "categoria": "Novedad",
+    "referencia": "Módulo Rescate Animal",
+    "autor": "Equipo VamosVZLA"
+  },
+  {
+    "titulo": "Simplificación de textos en teléfonos de auxilio",
+    "descripcion": "Cambiamos las palabras enredadas y técnicas de la lista de emergencias por frases comunes para que cualquier niño o abuelo pueda entenderlas rápido.",
+    "fecha": "10/07/2026",
+    "categoria": "Mejora",
+    "referencia": "Cartelera Informativa",
+    "autor": "Juan Pablo"
+  },
+  {
+    "titulo": "Corrección en la carga del mapa de insumos",
+    "descripcion": "Arreglamos una falla que hacía que las listas de donaciones tardaran en aparecer en teléfonos con conexiones lentas o datos móviles.",
+    "fecha": "08/07/2026",
+    "categoria": "Arreglo",
+    "referencia": "Panel de Stock",
+    "autor": "Desarrollo Frontend"
+  }
+]

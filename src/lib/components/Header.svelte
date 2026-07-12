@@ -2,10 +2,8 @@
     let { titulo, descripcion, info = "", error = null, exito = null } = $props();
     let dialogRef = $state();
     
-    // Estado local para controlar la visibilidad
     let visible = $state(false);
 
-    // Efecto para manejar el temporizador cada vez que cambia el error o exito
     $effect(() => {
         if (error || exito) {
             visible = true;
@@ -13,7 +11,6 @@
                 visible = false;
             }, 8000);
             
-            // Limpieza del timer si el componente se destruye o cambia el prop
             return () => clearTimeout(timer);
         } else {
             visible = false;

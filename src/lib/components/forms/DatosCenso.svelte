@@ -1,30 +1,9 @@
 <script>
     import { enhance } from '$app/forms';
-    import venezuelaData from '$lib/data/venezuela.json';
+    import Ubicacion from '../Ubicacion.svelte';
 
     let { perfilPromesa, personaAsociadaPromesa, estatusPersona } = $props();
 
-    let estadoSeleccionado = $state('');
-    let municipioSeleccionado = $state('');
-    let localidadSeleccionada = $state('');
-
-    $effect(() => {
-        personaAsociadaPromesa.then(persona => {
-            if (persona) {
-                estadoSeleccionado = persona.estado || '';
-                municipioSeleccionado = persona.municipio || '';
-                localidadSeleccionada = persona.localidad || '';
-            }
-        });
-    });
-
-    // Filtrado reactivo síncrono de 3 niveles utilizando $derived
-    let municipiosDisponibles = $derived(
-        venezuelaData.find(e => e.estado === estadoSeleccionado)?.municipios || []
-    );
-    let parroquiasDisponibles = $derived(
-        municipiosDisponibles.find(m => m.municipio === municipioSeleccionado)?.parroquias || []
-    );
 </script>
 
 <div class="space-y-4">
@@ -58,34 +37,7 @@
                     </select>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                    <div class="space-y-1">
-                        <label for="estado" class="text-[10px] font-black uppercase text-stone-600">Estado</label>
-                        <select name="estado" bind:value={estadoSeleccionado} onchange={() => { municipioSeleccionado = ''; localidadSeleccionada = ''; }} required >
-                            {#each venezuelaData as est}
-                                <option value={est.estado}>{est.estado.toUpperCase()}</option>
-                            {/each}
-                        </select>
-                    </div>
-
-                    <div class="space-y-1">
-                        <label for="municipio" class="text-[10px] font-black uppercase text-stone-600">Municipio</label>
-                        <select name="municipio" bind:value={municipioSeleccionado} onchange={() => { localidadSeleccionada = ''; }} required disabled={!estadoSeleccionado} >
-                            {#each municipiosDisponibles as mun}
-                                <option value={mun.municipio}>{mun.municipio.toUpperCase()}</option>
-                            {/each}
-                        </select>
-                    </div>
-
-                    <div class="space-y-1">
-                        <label for="localidad" class="text-[10px] font-black uppercase text-stone-600">Parroquia</label>
-                        <select name="localidad" bind:value={localidadSeleccionada} required disabled={!municipioSeleccionado} >
-                            {#each parroquiasDisponibles as par}
-                                <option value={par}>{par.toUpperCase()}</option>
-                            {/each}
-                        </select>
-                    </div>
-                </div>
+                <Ubicacion />
 
                 <div class="space-y-1">
                     <label for="direccionExacta" class="text-[10px] font-black uppercase text-stone-600">Dirección Exacta</label>

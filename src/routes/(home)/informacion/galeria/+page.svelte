@@ -1,5 +1,6 @@
 <script>
   let { data } = $props();
+  let itemActivo = $state(null);
 </script>
 
 <section id="hero" class="relative w-full border flex items-center rounded-none bg-stone-900">
@@ -50,13 +51,23 @@
   {:then listaEvidencias}
     <div class="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
 {#each listaEvidencias as item (item.rutaImagen)}
-  <div class="break-inside-avoid bg-stone-900 border border-stone-200 rounded-none overflow-hidden relative group mb-4 select-none">
-    <!-- Botón Técnico de Descarga (Esquina Superior Derecha) -->
+  {@const esActivo = itemActivo === item.rutaImagen}
+
+  <div 
+    role="button"
+    tabindex="0"
+    onclick={() => itemActivo = esActivo ? null : item.rutaImagen}
+    onkeydown={(e) => e.key === 'Enter' && (itemActivo = esActivo ? null : item.rutaImagen)}
+    class="break-inside-avoid bg-stone-900 border border-stone-200 rounded-none overflow-hidden relative group mb-4 select-none cursor-pointer outline-hidden"
+  >
+    
     <a 
       href={item.rutaImagen} 
       download
+      onclick={(e) => e.stopPropagation()}
       class="absolute top-3 right-3 z-20 bg-stone-950/90 border border-stone-700 text-stone-200 p-2 rounded-none opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-white hover:text-stone-900 hover:border-white flex items-center justify-center"
-      title="DESCARGAR ARCHIVO"
+      class:opacity-100={esActivo}
+      title="DESCARGAR"
     >
       <svg 
         xmlns="http://www.w3.org/2000/svg" 
@@ -73,17 +84,25 @@
         <line x1="12" y1="15" x2="12" y2="3" />
       </svg>
     </a>
+
     <img 
       src={item.rutaImagen} 
       alt={item.sitio} 
       loading="lazy"
       decoding="async"
       class="w-full h-auto block filter grayscale group-hover:grayscale-0 transition-all duration-300"
+      class:grayscale-0={esActivo}
     />
 
-    <div class="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 text-white font-mono text-[11px]">
+    <div 
+      class="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 text-white font-mono text-[11px]"
+      class:opacity-100={esActivo}
+    >
       
-      <div class="space-y-2 pointer-events-none translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+      <div 
+        class="space-y-2 pointer-events-none translate-y-2 group-hover:translate-y-0 transition-transform duration-300"
+        class:translate-y-0={esActivo}
+      >
         
         <div>
           <span class="text-[8px] font-black text-stone-400 uppercase block mb-0.5">Ubicación / Sitio</span>

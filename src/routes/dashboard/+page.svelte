@@ -1,11 +1,11 @@
 <script>
     import { enhance } from '$app/forms';
-    import venezuelaData from '$lib/data/venezuela.json';
+  import Header from '$lib/components/Header.svelte';
+  import Ubicacion from '$lib/components/Ubicacion.svelte';
+    import actualizaciones from '$lib/data/actualizaciones.json';
 
     let { form, data } = $props();
     let dialogRef = $state(null);
-    let estadoSeleccionado = $state('');
-    let municipioSeleccionado = $state('');
     let latitud = $state('8.000000');
     let longitud = $state('-66.000000');
     let cargando = $state(false);
@@ -13,9 +13,6 @@
     let mapElement = $state(null);
     let map = null;
     let marker = null;
-
-    let municipiosFiltrados = $derived(estadoSeleccionado ? venezuelaData.find(e => e.estado === estadoSeleccionado)?.municipios || [] : []);
-    let parroquiasFiltradas = $derived(municipioSeleccionado ? municipiosFiltrados.find(m => m.municipio === municipioSeleccionado)?.parroquias || [] : []);
 
     function abrirModal() {
         dialogRef?.showModal();
@@ -94,21 +91,7 @@
                 </div>
             </div>
 
-            <div class="grid grid-cols-3 gap-2">
-                <select bind:value={estadoSeleccionado} name="estado" class="border border-stone-200 p-2 text-xs uppercase focus:outline-none" required>
-                    <option value="">ESTADO</option>
-                    {#each venezuelaData as e}<option value={e.estado}>{e.estado}</option>{/each}
-                </select>
-                <select bind:value={municipioSeleccionado} name="municipio" class="border border-stone-200 p-2 text-xs uppercase focus:outline-none" required disabled={!estadoSeleccionado}>
-                    <option value="">MUNICIPIO</option>
-                    {#each municipiosFiltrados as m}<option value={m.municipio}>{m.municipio}</option>{/each}
-                </select>
-                <select name="localidad" class="border border-stone-200 p-2 text-xs uppercase focus:outline-none" required disabled={!municipioSeleccionado}>
-                    <option value="">PARROQUIA</option>
-                    {#each parroquiasFiltradas as p}<option value={p}>{p}</option>{/each}
-                </select>
-            </div>
-            
+            <Ubicacion />
             <textarea name="direccionExacta" placeholder="Dirección exacta" class="w-full border border-stone-200 p-2 text-xs focus:outline-none focus:border-stone-400 h-20" required></textarea>
 
             <div class="flex flex-col gap-2">
@@ -128,54 +111,75 @@
     {/if}
 </dialog>
 
-    <div class="bg-white border border-stone-200 p-6 md:p-8 rounded-none shadow-xs space-y-4 md:space-y-0 md:flex md:items-start md:justify-between">
-        <div class="space-y-2">
-            <h1 class="text-2xl md:text-4xl font-black text-stone-900 uppercase tracking-tight">
-                Esperamos que te encuentres bien
-            </h1>
-            <p class="text-xs md:text-sm text-stone-600 max-w-2xl font-medium leading-relaxed">
-                Plataforma para la coordinación civil de contingencias. Desde aquí puedes registrar aportes, gestionar solicitudes reportar novedades en tiempo real.
-            </p>
+<Header
+titulo="Esperamos que te encuentres bien"
+descripcion=""
+info=""
+/>
+
+
+
+
+<section id="bitacora-cambios" class="w-full bg-stone-50 border border-stone-200 p-6 rounded-none space-y-6">
+    
+    <div class="flex pb-4 border-b border-stone-200">
+        <div class="bg-blue-700 p-3 text-white">
+            <div>
+                <h3 class="text-xs font-black uppercase tracking-tight">
+                    Descubre lo nuevo en la plataforma
+                </h3>
+            </div>
+
         </div>
         <div class="pt-2 md:pt-0 shrink-0">
             {#if data.user && data.user.rol !== 'ENCARGADO' && data.user.rol !== 'ADMIN'}
                 <button onclick={abrirModal} type="button" class="bg-stone-900 text-white font-black uppercase text-xs p-3 hover:bg-stone-800 transition rounded-none">
-            Postular Organización
-</button>
+                    Postular Organización
+                </button>
             {/if}
         </div>
-    </div>
-
-
-
-
-
-    <div class="bg-stone-900 text-white p-6 rounded-none shadow-xs space-y-4">
-        <div class="border-b border-stone-800 pb-3">
-            <span class="text-[9px] font-black uppercase text-amber-500 tracking-wider">En Desarrollo</span>
-            <h3 class="text-base font-black uppercase tracking-tight">Próximos Módulos de la Plataforma</h3>
-        </div>
         
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            
+    </div>
 
-            <div class="p-4 bg-stone-850 border border-stone-800 space-y-2">
-                <div class="flex items-center justify-between">
-                    <span class="text-[10px] font-black uppercase tracking-wider text-emerald-400">Atención Animal</span>
+    <div class="w-full space-y-4 font-sans">
+    {#each actualizaciones as item (item.titulo + item.fecha)}
+        <div class="p-6 border rounded-none flex flex-col md:flex-row gap-6 justify-between items-start
+            {item.categoria === 'Novedad' ? 'bg-emerald-600 border-emerald-700 text-white' : 
+             item.categoria === 'Arreglo' ? 'bg-red-600 border-red-700 text-white' : 
+             'bg-amber-400 border-amber-500 text-stone-950'}">
+            
+            <div class="space-y-3 md:w-48 w-full flex-shrink-0">
+                <div class="flex items-center gap-2">
+                    <span class="px-2.5 py-0.5 text-[10px] font-black uppercase tracking-widest border border-current rounded-none">
+                        {item.categoria}
+                    </span>
+                    <span class="text-[10px] font-mono font-bold opacity-80">
+                        {item.fecha}
+                    </span>
                 </div>
-                <p class="text-xs font-bold text-stone-200">AMOR ANIMAL</p>
-                <p class="text-[11px] text-stone-400 leading-normal">Refugios para mascotas extraviadas, atención veterinaria de emergencia y bancos de alimento animal.</p>
+                
+                <div class="text-[11px] font-mono uppercase tracking-wider font-black opacity-90">
+                    {item.referencia}
+                    <br />
+                    <span class="text-[10px] font-mono font-bold opacity-80">
+                        {item.autor}
+                </span>
+                </div>
+                
             </div>
 
-
-
-            <div class="p-4 bg-stone-850 border border-stone-800 space-y-2">
-                <div class="flex items-center justify-between">
-                    <span class="text-[10px] font-black uppercase tracking-wider text-purple-400">Control</span>
-                </div>
-                <p class="text-xs font-bold text-stone-200">GESTION DE SERVICIOS</p>
-                <p class="text-[11px] text-stone-400 leading-normal">ofrece servicios de salud mental, entretenimiento, rescate entre otros</p>
+            <div class="space-y-1.5 flex-1 w-full md:border-l md:border-current/20 md:pl-6">
+                <h4 class="text-sm font-black uppercase tracking-tight leading-tight">
+                    {item.titulo}
+                </h4>
+                <p class="text-xs normal-case leading-relaxed font-medium opacity-95">
+                    {item.descripcion}
+                </p>
+                
+               
             </div>
 
         </div>
-    </div>
+    {/each}
+</div>
+</section>

@@ -1,28 +1,11 @@
 <script>
-    import { enhance } from '$app/forms';
-    import venezuela from '$lib/data/venezuela.json';
+    import { enhance } from '$app/forms';  
+    import Ubicacion from '../Ubicacion.svelte';
     let { form = $bindable(), estatusPersona } = $props();
     let verificado = $state(false);
-    let estadoSeleccionado = $state(form?.estado || "");
-    let municipioSeleccionado = $state(form?.municipio || "");
-    let localidadSeleccionada = $state(form?.localidad || "");
     let inputImgUrl = $state(form?.img || "");
     let imgError = $state(false);
     let imgCargando = $state(false);
-
-    let municipios = $derived(
-        venezuela.find(e => e.estado === estadoSeleccionado)?.municipios || []
-    );
-    let parroquias = $derived(
-        municipios.find(m => m.municipio === municipioSeleccionado)?.parroquias || []
-    );
-
-    $effect(() => { 
-        if (estadoSeleccionado && estadoSeleccionado !== form?.estado) {
-            municipioSeleccionado = ""; 
-            localidadSeleccionada = "";
-        }
-    });
 
     function validarImagen() {
         if (!inputImgUrl) {
@@ -112,40 +95,7 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div class="space-y-1">
-                <label for="estado" class="text-[10px] font-black uppercase text-stone-600">Estado *</label>
-                <select name="estado" bind:value={estadoSeleccionado} required
-                    >
-                    <option value="">Seleccione Estado...</option>
-                    {#each venezuela as e}
-                        <option value={e.estado}>{e.estado}</option>
-                    {/each}
-                </select>
-            </div>
-            <div class="space-y-1">
-                <label for="municipio" class="text-[10px] font-black uppercase text-stone-600">Municipio</label>
-                <select name="municipio" bind:value={municipioSeleccionado}
-                    >
-                    <option value="">Seleccione Municipio...</option>
-                    {#each municipios as m}
-                        <option value={m.municipio}>{m.municipio}</option>
-                    {/each}
-                </select>
-            </div>
-            <div class="space-y-1">
-                <label for="localidad" class="text-[10px] font-black uppercase text-stone-600">Localidad (Parroquia)</label>
-                <select name="localidad" bind:value={localidadSeleccionada}
-                    >
-                    <option value="">Seleccione Parroquia...</option>
-                    {#each parroquias as p}
-                        <option value={p}>{p}</option>
-                    {/each}
-                </select>
-            </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div class="space-y-1">
                 <label for="estatus" class="text-[10px] font-black uppercase text-stone-600">Estatus del Ciudadano *</label>
                 <select name="estatus" required value={form?.estatus ?? 'desaparecido'}
@@ -157,6 +107,11 @@
                     {/if}
                 </select>
             </div>
+            <Ubicacion />
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
             <div class="space-y-1 md:col-span-2">
                 <label for="direccionExacta" class="text-[10px] font-black uppercase text-stone-600">Dirección Exacta</label>
                 <input type="text" name="direccionExacta" value={form?.direccionExacta ?? ''}

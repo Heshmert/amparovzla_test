@@ -1,5 +1,6 @@
 <script>
     import { enhance } from '$app/forms';
+  import Ubicacion from '../Ubicacion.svelte';
     let { data } = $props();
 
     let estadoSeleccionado = $state('');
@@ -51,36 +52,8 @@
             </div>
         </div>
 
-        <div class="p-2 bg-stone-50 border border-stone-200 grid grid-cols-1 sm:grid-cols-3 gap-2 rounded-none">
-            <div class="space-y-1">
-                <label for="estado" class="text-[9px] font-black text-stone-400 uppercase">Estado</label>
-                <select id="estado" name="estado" bind:value={estadoSeleccionado} required >
-                    <option value="">SELECCIONE</option>
-                    {#each data.geografia || [] as est}
-                        <option value={est.estado}>{est.estado}</option>
-                    {/each}
-                </select>
-            </div>
-
-            <div class="space-y-1">
-                <label for="municipio" class="text-[9px] font-black text-stone-400 uppercase">Municipio</label>
-                <select id="municipio" name="municipio" bind:value={municipioSeleccionado} required disabled={!estadoSeleccionado} >
-                    <option value="">SELECCIONE</option>
-                    {#each listaMunicipios as mun}
-                        <option value={mun.municipio}>{mun.municipio}</option>
-                    {/each}
-                </select>
-            </div>
-
-            <div class="space-y-1">
-                <label for="parroquia" class="text-[9px] font-black text-stone-400 uppercase">Parroquia</label>
-                <select id="parroquia" name="localidad" bind:value={localidadSeleccionada} required disabled={!municipioSeleccionado}>
-                    <option value="">SELECCIONE</option>
-                    {#each listaParroquias as par}
-                        <option value={par}>{par}</option>
-                    {/each}
-                </select>
-            </div>
+        <div class="p-2 bg-stone-50 border border-stone-200 grid gap-2 rounded-none">
+            <Ubicacion />
         </div>
 
         <div class="space-y-1">

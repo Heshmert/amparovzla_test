@@ -91,9 +91,9 @@
                 <!-- Selección de Talentos (Máx 4) -->
                 <div class="border-t border-stone-200 pt-3">
                     <div class="flex justify-between items-center mb-2">
-                        <span class="text-[10px] font-black uppercase text-stone-900 tracking-tight">Talentos Prioritarios de Emergencia</span>
+                        <span class="text-[10px] font-black uppercase text-stone-900 tracking-tight">Talentos y Habilidades</span>
                         <span class="text-[9px] font-mono font-bold {selectedTalents.length === 4 ? 'text-amber-700' : 'text-stone-500'}">
-                            [{selectedTalents.length}/4 ASIGNADOS]
+                            [{selectedTalents.length}/4]
                         </span>
                     </div>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 border border-stone-200 bg-stone-50 p-2 max-h-36 overflow-y-auto rounded-none">
@@ -117,9 +117,9 @@
                 <!-- Selección de Áreas (Máx 4) -->
                 <div class="border-t border-stone-200 pt-3">
                     <div class="flex justify-between items-center mb-2">
-                        <span class="text-[10px] font-black uppercase text-stone-900 tracking-tight">Áreas de Cobertura y Despliegue</span>
+                        <span class="text-[10px] font-black uppercase text-stone-900 tracking-tight">Áreas de Cobertura</span>
                         <span class="text-[9px] font-mono font-bold {selectedAreas.length === 4 ? 'text-amber-700' : 'text-stone-500'}">
-                            [{selectedAreas.length}/4 ASIGNADAS]
+                            [{selectedAreas.length}/4]
                         </span>
                     </div>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 border border-stone-200 bg-stone-50 p-2 max-h-36 overflow-y-auto rounded-none">
