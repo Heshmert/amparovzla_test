@@ -79,7 +79,6 @@
         })
     );
 </script>
-
 {#snippet tarjetaAyuda(item)}
     {@const estilo = estilosPorTipo[item.tipo] || { texto: "text-stone-900", boton: "bg-stone-900" }}
     
@@ -115,28 +114,26 @@
     </div>
 {/snippet}
 
-<section id="hero" class="relative w-full min-h-[35vh] flex items-center py-12 bg-stone-900 overflow-hidden border-b border-stone-800 rounded-none">
-    <div class="relative z-10 px-6 md:px-10 max-w-4xl w-full">        
+<section id="hero" class="relative w-full min-h-[35vh] flex items-center py-12 bg-stone-900 overflow-hidden inset-0 bg-[url('/img/hero_emergencia.webp')] bg-cover bg-center">
+
+    <div class="relative z-10 px-6 md:px-10 max-w-4xl w-full space-y-5">        
         <h1 class="text-3xl md:text-5xl font-black text-white tracking-tighter uppercase leading-none mb-3">
             Números de Emergencia
         </h1>
-        <p class="text-xs md:text-sm text-stone-400 font-normal font-sans normal-case leading-relaxed max-w-xl border-l border-stone-700 pl-4">
+        <p class="text-xs md:text-sm text-stone-200 font-normal font-sans normal-case leading-relaxed max-w-xl border-l border-stone-700 pl-4">
             Si tienes una urgencia o necesitas ayuda en tu comunidad, busca en esta lista. Puedes llamar directamente tocando el botón de cada tarjeta desde tu teléfono.
         </p>
-    </div>
-</section>
-
-<section id="filtros-emergencia" class="w-full bg-stone-50 border-b border-stone-200 p-4 font-mono rounded-none">
-    <div class="max-w-3xl flex flex-col space-y-1">
-        <label for="buscador" class="text-[10px] font-black text-stone-900 uppercase">¿Qué ayuda necesitas?</label>
+        <label for="buscador" class="text-[10px] font-black text-white uppercase">¿Qué ayuda necesitas?</label>
         <input 
             id="buscador"
             type="text" 
             bind:value={loQueBusca}
             placeholder="Escribe aquí lo que buscas (ejemplo: bomberos, comida, agua, policía)..."
-            class="w-full bg-white border border-stone-200 p-3 text-xs rounded-none focus:outline-hidden focus:border-stone-950 font-mono uppercase"
+            class=" p-4 "
         />
+
     </div>
+
 </section>
 
 <section id="lista-emergencias" class="w-full p-4 md:p-6 bg-white rounded-none">

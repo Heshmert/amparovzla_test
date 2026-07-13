@@ -14,10 +14,7 @@
     }
 </script>
 
-<section id="hero" class="relative w-full border min-h-[70vh] flex items-center rounded-none overflow-hidden bg-stone-900">
-    <div class="absolute inset-0 bg-[url('/img/hero_buscame.jpg')] bg-cover bg-center opacity-25 mix-blend-luminosity"></div>
-
-    <div class="absolute inset-0 bg-blue-950/60"></div>
+<section id="hero" class="relative w-full border min-h-[70vh] flex items-center  overflow-hidden inset-0 bg-[url('/img/hero_buscame.webp')] bg-cover bg-center">
     <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 text-white">
         <div class="lg:col-span-8 p-6 md:p-10 flex flex-col justify-center space-y-4 border-b lg:border-b-0 lg:border-r border-stone-800">
             <div class="space-y-1">

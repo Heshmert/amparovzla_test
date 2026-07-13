@@ -11,7 +11,7 @@
     let selectedAreas = $state([]);
 
     let imagenActual = $state(0);
-    const imagenes = ['/img/auth/registro_1.jpg', '/img/auth/registro_2.jpg'];
+    const imagenes = ['/img/auth/registro_1.jpg', '/img/auth/registro_2.webp'];
 
     const obtenerFechaMaxima18 = () => {
         const hoy = new Date();

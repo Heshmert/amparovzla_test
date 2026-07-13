@@ -45,6 +45,7 @@
             <a href="/buscame" onclick={() => menuAbierto = false} class="block px-8 py-4 text-[10px] font-black uppercase text-white hover:bg-stone-900/5">
                 Búscame
             </a>
+            <a href="/emergencia" onclick={() => menuAbierto = false} class="block px-8 py-4 text-[10px] font-black uppercase btn-red">Contactos de Emergencia</a>
             <a href="/ingresar" onclick={() => menuAbierto = false} class="block px-8 py-4 text-[10px] font-black uppercase btn-blue">
                 Ingresar
             </a>
@@ -74,7 +75,7 @@
                 <ul class="space-y-2 text-[11px] uppercase font-bold text-stone-400">
                     <li><a href="/informacion" class="hover:text-blue-400 transition">Conoce el proyecto</a></li>
                     <li><a href="/listas/centros_acopio" class="hover:text-blue-400 transition">Centros de Ayuda</a></li>
-                    <li><a href="/emergencias" class="hover:text-blue-400 transition">Contactos de Emergencia</a></li>     
+                    <li><a href="/emergencia" class="hover:text-blue-400 transition">Contactos de Emergencia</a></li>     
                     <li><a href="/informacion/galeria" class="hover:text-blue-400 transition">Galeria Fotografica</a></li>
                 </ul>
             </div>

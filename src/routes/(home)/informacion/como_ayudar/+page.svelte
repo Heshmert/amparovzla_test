@@ -229,10 +229,9 @@ const listaPerfiles = [
     </div>
 {/snippet}
 
-<section id="hero" class="relative w-full min-h-[50vh] flex items-center py-16 overflow-hidden border-b border-stone-800 rounded-none">
-    <div class="absolute inset-0 bg-[url('/img/hero_habilidades.jpg')] bg-cover bg-center mix-blend-luminosity"></div>
+<section id="hero" class="relative w-full min-h-[50vh] flex items-center py-16 overflow-hidden
+bg-[url('/img/hero_ayudar.webp')] bg-cover bg-center">
 
-    <div class="absolute inset-0 bg-blue-950/60"></div>
     
     <div class="relative z-10 px-6 md:px-10 max-w-4xl w-full">        
         <h1 class="text-4xl sm:text-5xl md:text-6xl font-black text-white tracking-tighter uppercase leading-[0.9] mb-6">

@@ -17,11 +17,14 @@
 
 
 <!-- ─── HERO: LA PROMESA (ÍNTEGRO) ─── -->
-<section id="hero" class="relative w-full min-h-screen flex items-center overflow-hidden border-b border-stone-200">
+<section id="hero" 
+class="relative w-full min-h-screen flex items-center overflow-hidden border-b 
+bg-[url('/img/hero_informacion.webp')] 
+bg-cover 
+bg-center">
     <!-- IMAGEN DE FONDO CON ENTINTADO -->
-    <div class="absolute inset-0 bg-[url('/img/hero_info.jpg')] bg-cover bg-center"></div>
 
-    <div class="absolute inset-0 bg-blue-950/60"></div>
+
     <!-- CONTENIDO -->
     <div class="relative z-10 px-6 md:px-20 w-full max-w-6xl">
         <div class="max-w-4xl space-y-8">
