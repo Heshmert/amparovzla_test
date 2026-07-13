@@ -22,7 +22,6 @@ h1, h2{
     font-family: 'PaytoneOne', sans-serif;
     font-weight: 700;
     text-transform: uppercase;
-    line-height: 1.2;
     letter-spacing: -0.02em;
 }
 
@@ -35,6 +34,9 @@ p, h3, h4, h5, h6 {
 @layer components {
     input, select, textarea{
         @apply w-full border border-stone-200 bg-stone-50 p-2 text-xs font-medium text-stone-900 uppercase focus:outline-none focus:border-stone-900 rounded-none
+    }
+    th{
+        @apply border border-stone-200 p-2 bg-stone-50 text-xs font-bold text-stone-900 uppercase rounded-none
     }
 
     .btn {

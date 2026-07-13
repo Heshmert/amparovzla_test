@@ -57,52 +57,70 @@
         {@render children()}
     </main>
 
-<footer class="bg-slate-900 text-stone-300 border-t border-stone-800 py-16 px-4 md:px-8 mt-auto">
-    <div class="max-w-7xl mx-auto space-y-12">
+<footer class="relative bg-slate-950 text-slate-300 py-16 px-6 md:px-12 mt-auto border-t border-slate-900 overflow-hidden">
+    <!-- Detalle sutil: Línea superior con los colores de la bandera para conectar con el Hero -->
+    <div class="absolute top-0 left-0 w-full h-1 flex">
+        <div class="flex-1 bg-amber-500"></div>
+        <div class="flex-1 bg-blue-700"></div>
+        <div class="flex-1 bg-red-700"></div>
+    </div>
+
+    <div class="max-w-6xl mx-auto flex flex-col gap-12">
         
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
-            <!-- Identidad -->
-            <div class="space-y-3">
-                <p class="font-black text-white text-[10px] uppercase tracking-widest">AmparoVZLA</p>
-                <p class="text-[11px] leading-relaxed text-stone-500">
+        <!-- Bloques Principales -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
+            
+            <!-- Marca e Identidad -->
+            <div class="space-y-4">
+                <p class="text-2xl font-black text-white tracking-tighter uppercase">
+                    AMPARO<span class="text-amber-500">.</span>
+                </p>
+                <p class="text-xs text-slate-400 leading-relaxed max-w-xs">
                     Iniciativa civil e independiente. Infraestructura técnica para la gestión transparente de ayuda, insumos y auxilio ciudadano en zonas afectadas.
                 </p>
             </div>
             
-            <!-- Información -->
-            <div class="space-y-3">
-                <p class="font-black text-white text-[10px] uppercase tracking-widest">Información</p>
-                <ul class="space-y-2 text-[11px] uppercase font-bold text-stone-400">
-                    <li><a href="/informacion" class="hover:text-blue-400 transition">Conoce el proyecto</a></li>
-                    <li><a href="/listas/centros_acopio" class="hover:text-blue-400 transition">Centros de Ayuda</a></li>
-                    <li><a href="/emergencia" class="hover:text-blue-400 transition">Contactos de Emergencia</a></li>     
-                    <li><a href="/informacion/galeria" class="hover:text-blue-400 transition">Galeria Fotografica</a></li>
+            <!-- Enlaces: Información -->
+            <div class="space-y-4">
+                <p class="text-[11px] font-extrabold uppercase tracking-widest text-amber-500">Información</p>
+                <ul class="space-y-3 text-xs font-medium text-slate-300">
+                    <li><a href="/informacion" class="hover:text-blue-400 transition-colors">Conoce el proyecto</a></li>
+                    <li><a href="/listas/centros_acopio" class="hover:text-blue-400 transition-colors">Centros de Ayuda</a></li>
+                    <li><a href="/emergencia" class="hover:text-blue-400 transition-colors">Contactos de Emergencia</a></li>     
+                    <li><a href="/informacion/galeria" class="hover:text-blue-400 transition-colors">Galería Fotográfica</a></li>
                 </ul>
             </div>
 
-            <!-- Participar -->
-            <div class="space-y-3">
-                <p class="font-black text-white text-[10px] uppercase tracking-widest">Participar</p>
-                <ul class="space-y-2 text-[11px] uppercase font-bold text-stone-400">
-                    <li><a href="/ingresar" class="hover:text-blue-400 transition">Entrar</a></li>
-                    <li><a href="/registro" class="hover:text-blue-400 transition">Quiero ser voluntario</a></li>
-                    <li><a href="/informacion/como_ayudar" class="hover:text-blue-400 transition">Guía de ayuda</a></li>
-                    <li><a href="/buscame" class="hover:text-blue-400 transition">Censo Civil</a></li>     
+            <!-- Enlaces: Participar -->
+            <div class="space-y-4">
+                <p class="text-[11px] font-extrabold uppercase tracking-widest text-blue-500">Participar</p>
+                <ul class="space-y-3 text-xs font-medium text-slate-300">
+                    <li><a href="/ingresar" class="hover:text-blue-400 transition-colors">Entrar al sistema</a></li>
+                    <li><a href="/registro" class="hover:text-blue-400 transition-colors">Quiero ser voluntario</a></li>
+                    <li><a href="/informacion/como_ayudar" class="hover:text-blue-400 transition-colors">Guía de ayuda</a></li>
+                    <li><a href="/buscame" class="hover:text-blue-400 transition-colors">Censo Civil</a></li>     
                 </ul>
             </div>
 
-            <!-- Mensaje -->
-            <div class="space-y-3 bg-stone-800/40 p-4 border border-stone-800 rounded-none">
-                <p class="font-black text-white text-[10px] uppercase tracking-widest">Unidos por Venezuela</p>
-                <p class="leading-relaxed text-stone-200 text-[11px] italic">
-                    "La fuerza de nuestra nación reside en la capacidad de organizarnos para proteger nuestros hermanos"
+            <!-- Tarjeta con Propósito Humano -->
+            <div class="space-y-3 bg-slate-900/50 p-6 border border-slate-800/60 shadow-xl flex flex-col justify-center">
+                <h2 class="text-[10px] font-extrabold uppercase tracking-widest text-red-500">Unidos por Venezuela</h2>
+                <p class="leading-relaxed text-slate-200 text-xs italic font-medium">
+                    "La fuerza de nuestra nación reside en la capacidad de organizarnos para proteger a nuestros hermanos."
                 </p>
             </div>
         </div>
 
-        <!-- Pie de página -->
-        <div class="border-t border-stone-800/80 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[9px] font-black uppercase tracking-widest text-stone-500">
-            <p>© 2026 AmparoVZLA. Plataforma independiente.</p>
+        <!-- Cierre del Footer -->
+        <div class="border-t border-slate-900 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-medium text-slate-500">
+            <p>© 2026 AmparoVZLA. Plataforma autónoma y ciudadana.</p>
+            
+            <!-- Red Social integrada con estilo limpio -->
+            <div class="flex items-center gap-2">
+                <a href="https://instagram.com/amparo.vzla" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 bg-slate-900 border border-slate-800 text-slate-300 px-4 py-2  text-xs font-bold uppercase tracking-wider hover:bg-blue-700 hover:text-white hover:border-blue-600 transition duration-200">
+                    Instagram
+                </a>
+            </div>
         </div>
 
     </div>

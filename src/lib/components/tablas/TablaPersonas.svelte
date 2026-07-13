@@ -22,8 +22,8 @@
 </script>
 
 <div id="personas">
-    <div class="bg-white border border-stone-200 mt-6 p-4 rounded-none font-sans">
-        <div class="flex flex-col md:flex-row justify-between items-center gap-4 mb-4 pb-3 border-b border-stone-200">
+    <div class="bg-white border border-stone-200 mt-6 p-4 rounded-none  gap-4 grid font-sans">
+        <div class="flex flex-col md:flex-row justify-between items-center ">
             
             {#await data.streamed.totalCount}
                 <span class="text-[10px] font-black text-stone-400 uppercase font-mono">Cargando...</span>
@@ -46,7 +46,7 @@
 
             <form onsubmit={(e) => { e.preventDefault(); buscar(); }} class="flex gap-2 w-full md:w-auto">
                 <input type="text" placeholder="BUSCAR NOMBRE O APELLIDO..." bind:value={searchTerm} 
-                    class="border border-stone-200 bg-stone-50 p-2 text-[10px] font-medium text-stone-900 uppercase w-full md:w-64 focus:outline-none focus:border-stone-900 rounded-none" />
+                    class="bg-stone-50 p-2 text-[10px] font-medium text-stone-900 uppercase w-full md:w-64 focus:outline-none focus:border-stone-900 rounded-none" />
                 <button type="submit" class="bg-stone-900 text-white px-4 py-2 text-[10px] font-black uppercase tracking-wider hover:bg-stone-800 transition rounded-none">
                     Buscar
                 </button>
@@ -55,12 +55,12 @@
 
         <div class="overflow-x-auto">
             <table class="w-full text-left border-collapse text-xs uppercase m-0">
-                <thead class="bg-stone-50 border-b border-stone-200">
-                    <tr class="text-[10px] font-black text-stone-600">
-                        <th class="p-3 pl-4">Nombre</th>
-                        <th class="p-3">Apellido</th>
-                        <th class="p-3">Estatus</th>
-                        <th class="p-3 text-right pr-4">Acción</th>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Estatus</th>
+                        <th class="text-right pr-4">Acción</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-stone-100">
@@ -80,7 +80,7 @@
                                 </td>
                                 <td class="p-3 text-right pr-4">
                                     <button onclick={() => onVerExpediente(p)} type="button" class="text-blue-700 font-black hover:underline text-[10px] uppercase tracking-wider">
-                                        Ver Expediente →
+                                        Ver Expediente
                                     </button>
                                 </td>
                             </tr>

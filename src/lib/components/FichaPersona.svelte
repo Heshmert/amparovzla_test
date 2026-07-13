@@ -1,5 +1,6 @@
 <script>
-    import html2canvas from 'html2canvas';
+    import { date } from 'drizzle-orm/mysql-core';
+    import { toPng } from 'html-to-image';
     import { tick } from 'svelte';
 
     let { persona, open = $bindable(false) } = $props();
@@ -29,25 +30,25 @@
                 return;
             }
 
-            const canvas = await html2canvas(exportRef, {
+            // Ahora que las coordenadas son locales (0,0), el renderizado no saldrá en blanco
+            const dataUrl = await toPng(exportRef, {
                 width: 1080,
                 height: 1350,
-                scale: 1, 
-                useCORS: true, 
-                allowTaint: true,
-                logging: false,
-                backgroundColor: '#ffffff'
+                style: {
+                    transform: 'scale(1)',
+                    transformOrigin: 'top left'
+                }
             });
 
             const link = document.createElement('a');
             link.download = `ALERTA_${persona.estatus}_${persona.nombre}_${persona.apellido}.png`.toUpperCase();
-            link.href = canvas.toDataURL('image/png');
+            link.href = dataUrl;
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
 
         } catch (error) {
-            console.error("Error detallado de html2canvas:", error);
+            console.error("Error detallado de html-to-image:", error);
             alert(`Error al generar la imagen: ${error.message}`);
         } finally {
             procesandoImagen = false;
@@ -156,118 +157,102 @@
 </dialog>
 
 {#if persona && persona.estatus !== 'BIEN'}
-    <div 
-        bind:this={exportRef}
-        style="background-color: #ffffff; color: #0c0a09; border: 32px solid #0c0a09; box-sizing: border-box;"
-        class="absolute top-0 left-[-9999px] w-[1080px] h-[1350px] p-12 flex flex-col justify-between select-none font-sans pointer-events-none overflow-hidden"
-    >
-        <!-- Encabezado de Alerta -->
-        <div class="w-full flex justify-between items-end pb-6" style="border-bottom: 8px solid #0c0a09;">
-            <div class="space-y-1">
-                <span style="letter-spacing: 0.25em; color: #78716c;" class="text-xs font-mono font-black uppercase block">RED HUMANITARIA VAMOSVZLA</span>
-                <h2 style="font-size: 48px; line-height: 1; color: #0c0a09;" class="font-black tracking-tighter uppercase m-0">
-                    FICHA DE ALERTA CIVIL
-                </h2>
-            </div>
-            <div style="background-color: #dc2626; color: #ffffff;" class="px-6 py-3 font-mono text-2xl font-black uppercase tracking-widest">
-                {persona.estatus}
-            </div>
-        </div>
-
-        <!-- Bloque Central -->
-        <div class="grid grid-cols-12 gap-10 my-8 items-stretch flex-1">
-            
-            <!-- Izquierda: Fotografía Hero + Nombre Gigante -->
-            <div class="col-span-6 flex flex-col justify-between">
-                <div style="border: 4px solid #0c0a09; background-color: #f5f5f4;" class="w-full h-[680px] relative overflow-hidden">
-                    {#if persona.img}
-                        <img src={persona.img} crossorigin="anonymous" alt="Imagen Afiche" class="absolute inset-0 w-full h-full object-cover" />
-                    {:else}
-                        <div style="color: #a8a29e;" class="w-full h-full flex items-center justify-center font-mono text-base uppercase font-black p-12 text-center">
-                            SIN REGISTRO FOTOGRÁFICO EN EL EXPEDIENTE
-                        </div>
-                    {/if}
-                </div>
-                
-                <div class="mt-6 space-y-1">
-                    <span style="color: #78716c; letter-spacing: 0.1em;" class="text-[11px] font-mono font-black uppercase block">CIUDADANO A LOCALIZAR / IDENTIFICAR:</span>
-                    <h1 style="font-size: 42px; line-height: 1.1; color: #0c0a09;" class="font-black uppercase tracking-tight">
-                        {persona.nombre} <br/>{persona.apellido}
-                    </h1>
-                </div>
+    <div style="position: absolute; top: 0; left: 0; width: 0; height: 0; overflow: hidden; pointer-events: none;">
+        <div 
+            bind:this={exportRef}
+            style="background-color: #f4f4f4; color: #111111; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; padding: 45px; width: 1080px; height: 1350px; user-select: none; font-family: system-ui, -apple-system, sans-serif; overflow: hidden; border: 1px solid #cccccc;"
+        >
+            <div style="background-color: #cc0000; color: #ffffff; height: 90px; padding: 0 32px; display: flex; justify-content: space-between; align-items: center; box-sizing: border-box; width: 100%;">
+                <span style="font-size: 42px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.02em; margin: 0; padding: 0; line-height: 1; display: inline-block;">
+                    {persona.estatus}
+                </span>
+                <span style="height: 50px; display: block; margin: 0; padding: 0;">
+                    <img src="/img/logos/logo_borde.png" width="50" style="display: block; max-height: 50px; width: auto;" alt="Logo Borde">
+                </span>
             </div>
 
-            <!-- Derecha: Datos Estructurados -->
-            <div class="col-span-6 flex flex-col justify-between space-y-6">
-                
-                <!-- Tabla de Datos Físicos -->
-                <div class="w-full">
-                    <div style="background-color: #0c0a09; color: #ffffff;" class="px-4 py-2 text-[11px] font-black uppercase tracking-wider font-mono">
-                        01. ESPECIFICACIONES BIOMÉTRICAS
+            <div style="background-color: #ffffff; width: 100%; height: 620px; position: relative; overflow: hidden; margin-top: 20px; box-sizing: border-box;">
+                {#if persona.img}
+                    <img 
+                        src={persona.img} 
+                        crossorigin="anonymous" 
+                        alt="Fotografía Principal" 
+                        style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%; object-fit: cover; object-position: center;" 
+                    />
+                {:else}
+                    <div style="color: #888888; height: 100%; width: 100%; display: flex; align-items: center; justify-content: center; font-weight: 900; text-transform: uppercase; text-align: center; font-size: 26px; letter-spacing: 0.05em;">
+                        INFORMACION NO PROPORCIONADA
                     </div>
-                    <table class="w-full" style="border-collapse: collapse; border-bottom: 2px solid #0c0a09;">
-                        <tbody>
-                            <tr style="border-bottom: 1px solid #e7e5e4;">
-                                <td style="color: #78716c;" class="py-3 font-mono text-[11px] font-black uppercase w-1/3">GÉNERO:</td>
-                                <td style="color: #0c0a09;" class="py-3 font-sans text-sm font-bold uppercase">{persona.genero === 'M' ? 'MASCULINO' : 'FEMENINO'}</td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid #e7e5e4;">
-                                <td style="color: #78716c;" class="py-3 font-mono text-[11px] font-black uppercase">NACIMIENTO:</td>
-                                <td style="color: #0c0a09;" class="py-3 font-sans text-sm font-bold uppercase font-mono">{persona.fechaNacimiento || 'NO REGISTRADO'}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                {/if}
+            </div>
 
-                <!-- Bloque: Ubicación -->
-                <div class="w-full">
-                    <div style="background-color: #0c0a09; color: #ffffff;" class="px-4 py-2 text-[11px] font-black uppercase tracking-wider font-mono">
-                        02. ÁREA GEOGRÁFICA DEL SUCESO
-                    </div>
-                    <div style="background-color: #f5f5f4; border: 2px solid #0c0a09; border-top: 0;" class="p-4 space-y-3">
+            <div style="margin-top: 20px; width: 100%; box-sizing: border-box; border-bottom: 4px solid #111111; padding-bottom: 14px; margin-bottom: 4px;">
+                <h1 style="font-size: 44px; font-weight: 900; text-transform: uppercase; color: #111111; margin: 0; padding: 0; letter-spacing: -0.01em; line-height: 1;">
+                    {persona.nombre || 'INFORMACION NO PROPORCIONADA'} {persona.apellido || ''}
+                </h1>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 400px 1fr; gap: 24px; width: 100%; box-sizing: border-box; flex: 1; margin-top: 16px; align-items: stretch; overflow: hidden;">
+                
+                <div style="display: flex; flex-direction: column; gap: 16px; height: 100%;">
+                    
+                    <div style="background-color: #ffffff; padding: 20px; box-sizing: border-box; display: flex; flex-direction: column; gap: 12px;">
                         <div>
-                            <span style="color: #78716c;" class="text-[10px] font-mono font-black uppercase block">JURISDICCIÓN:</span>
-                            <p style="color: #0c0a09;" class="text-base font-black uppercase m-0">
-                                EDO. {persona.estado} / MUN. {persona.municipio || 'N/A'}
-                            </p>
-                            <p style="color: #44403c;" class="text-xs font-bold uppercase m-0 mt-0.5">
-                                PARROQUIA: {persona.localidad || 'N/A'}
+                            <span style="color: #666666; font-size: 12px; font-weight: 900; letter-spacing: 0.05em; display: block; text-transform: uppercase; margin: 0; padding: 0; line-height: 1.2;">ESTADO</span>
+                            <p style="font-size: 22px; font-weight: 800; color: #111111; margin: 0; text-transform: uppercase; line-height: 1.2;">
+                                {persona.estado || 'INFORMACION NO PROPORCIONADA'}
                             </p>
                         </div>
-                        <div style="background-color: #ffffff; border: 1px solid #e7e5e4;" class="p-3 font-mono text-xs uppercase">
-                            <span style="color: #a8a29e;" class="font-sans font-black text-[9px] block mb-1">PUNTO DE REFERENCIA DIRECTO:</span>
-                            "{persona.direccionExacta || 'SIN DETALLES DE DIRECCIÓN EN EL REPORTE'}"
+                        <div style="border-top: 1px solid #eeeeee; padding-top: 8px;">
+                            <span style="color: #666666; font-size: 12px; font-weight: 900; letter-spacing: 0.05em; display: block; text-transform: uppercase; margin: 0; padding: 0; line-height: 1.2;">MUNICIPIO</span>
+                            <p style="font-size: 22px; font-weight: 800; color: #111111; margin: 0; text-transform: uppercase; line-height: 1.2;">
+                                {persona.municipio || 'INFORMACION NO PROPORCIONADA'}
+                            </p>
+                        </div>
+                        <div style="border-top: 1px solid #eeeeee; padding-top: 8px;">
+                            <span style="color: #666666; font-size: 12px; font-weight: 900; letter-spacing: 0.05em; display: block; text-transform: uppercase; margin: 0; padding: 0; line-height: 1.2;">PARROQUIA</span>
+                            <p style="font-size: 22px; font-weight: 800; color: #111111; margin: 0; text-transform: uppercase; line-height: 1.2;">
+                                {persona.localidad || 'INFORMACION NO PROPORCIONADA'}
+                            </p>
                         </div>
                     </div>
+
+                    <div style="background-color: #ffffff; padding: 20px; box-sizing: border-box; flex: 1; display: flex; flex-direction: column; justify-content: flex-start;">
+                        <span style="color: #666666; font-size: 12px; font-weight: 900; letter-spacing: 0.05em; display: block; text-transform: uppercase; margin: 0; padding: 0; line-height: 1.2;">DIRECCION EXACTA</span>
+                        <p style="font-size: 18px; line-height: 1.4; color: #222222; margin: 0; margin-top: 6px; text-transform: uppercase; white-space: pre-wrap; word-break: break-word;">
+                            {persona.direccionExacta ? `"${persona.direccionExacta}"` : 'INFORMACION NO PROPORCIONADA'}
+                        </p>
+                    </div>
+
                 </div>
+                
+                <div style="display: flex; flex-direction: column; gap: 16px; height: 100%;">
+                    
+                    <div style="background-color: #ffffff; padding: 20px; box-sizing: border-box;">
+                        <span style="color: #666666; font-size: 12px; font-weight: 900; letter-spacing: 0.05em; display: block; text-transform: uppercase; margin: 0; padding: 0; line-height: 1.2;">GENERO</span>
+                        <p style="font-size: 22px; font-weight: 800; color: #111111; margin: 0; margin-top: 4px; text-transform: uppercase; line-height: 1.2;">
+                            {persona.genero ? (persona.genero === 'M' ? 'MASCULINO' : 'FEMENINO') : 'INFORMACION NO PROPORCIONADA'} 
+                        </p>
+                        <span style="color: #666666; font-size: 12px; font-weight: 900; letter-spacing: 0.05em; display: block; text-transform: uppercase; margin: 0; padding: 0; line-height: 1.2;">FECHA DE NACIMIENTO</span>
+                        <p style="font-size: 22px; font-weight: 800; color: #111111; margin: 0; margin-top: 4px; text-transform: uppercase; line-height: 1.2;">
+                            {persona.fechaNacimiento || 'INFORMACION NO PROPORCIONADA'}
+                        </p>
+                    </div>
 
-                <!-- Código Verificación -->
-                <div style="border: 1px solid #e7e5e4; color: #a8a29e;" class="p-4 font-mono text-[10px] uppercase flex justify-between items-center">
-                    <span>REF-ID: #{Math.random().toString(36).substr(2, 9).toUpperCase()}</span>
-                    <span>SVELTE5_PROD_OUTPUT</span>
+                    <div style="background-color: #ffffff; padding: 20px; box-sizing: border-box; flex: 1; display: flex; flex-direction: column; justify-content: flex-start;">
+                        <span style="color: #666666; font-size: 12px; font-weight: 900; letter-spacing: 0.05em; display: block; text-transform: uppercase; margin: 0; padding: 0; line-height: 1.2;">DESCRIPCIÓN</span>
+                        <p style="font-size: 20px; font-weight: 700; color: #111111; margin: 0; margin-top: 6px; text-transform: uppercase; line-height: 1.4; word-break: break-word;">
+                           {persona.caracteristicas || 'INFORMACION NO PROPORCIONADA'}
+                        </p>
+                    </div>
+
                 </div>
             </div>
-        </div>
 
-        <!-- Bloque Inferior: Detalles -->
-        <div class="w-full">
-            <div style="background-color: #0c0a09; color: #ffffff;" class="px-4 py-2 text-[11px] font-black uppercase tracking-wider font-mono">
-                03. DETALLES Y HECHOS OPERACIONALES REGISTRADOS
+            <div style="border-top: 4px solid #111111; padding-top: 20px; display: flex; justify-content: space-between; align-items: center; font-size: 15px; color: #666666; margin-top: 20px; width: 100%; box-sizing: border-box; font-weight: 700; letter-spacing: 0.02em;">
+                <span style="margin: 0; padding: 0; line-height: 1.2;">{Date()}</span>
+                <span style="font-weight: 900; color: #111111; margin: 0; padding: 0; line-height: 1.2;">AMPARO VENEZUELA</span>
             </div>
-            <div style="border: 2px solid #0c0a09; border-top: 0;" class="p-6 min-h-[160px] flex items-start">
-                <p style="font-size: 15px; line-height: 1.5; color: #1c1917;" class="font-mono uppercase m-0 whitespace-pre-wrap">
-                    {persona.caracteristicas || 'EL EXPEDIENTE CIVIL NO CUENTA CON ANOTACIONES FÍSICAS NI DE HECHOS ADICIONALES HASTA LA FECHA DE IMPRESIÓN.'}
-                </p>
-            </div>
-        </div>
-
-        <!-- Pie de Ficha -->
-        <div style="border-top: 4px solid #0c0a09; color: #78716c;" class="pt-4 flex justify-between items-center font-mono text-xs">
-            <div class="flex items-center space-x-2">
-                <span style="background-color: #0c0a09; color: #ffffff;" class="px-1.5 py-0.5 text-[9px] font-black">INFO</span>
-                <span style="color: #0c0a09;" class="font-bold uppercase tracking-wider">DOCUMENTO OFICIAL PARA CANALES PÚBLICOS E IMPRENTA</span>
-            </div>
-            <span style="color: #0c0a09;" class="font-black">VAMOS VENEZUELA 2026</span>
         </div>
     </div>
 {/if}

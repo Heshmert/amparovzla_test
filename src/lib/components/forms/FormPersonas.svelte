@@ -110,26 +110,22 @@
             <Ubicacion />
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
 
-            <div class="space-y-1 md:col-span-2">
-                <label for="direccionExacta" class="text-[10px] font-black uppercase text-stone-600">Dirección Exacta</label>
-                <input type="text" name="direccionExacta" value={form?.direccionExacta ?? ''}
-                     />
-            </div>
-        </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-start border-t border-stone-100 pt-3">
             <div class="lg:col-span-8 space-y-1">
+                <label for="direccionExacta" class="text-[10px] font-black uppercase text-stone-600">Dirección Exacta</label>
+                <input type="text" name="direccionExacta" value={form?.direccionExacta ?? ''}/>
                 <label for="img" class="text-[10px] font-black uppercase text-stone-600 block">Vínculo de Fotografía Externa (URL)</label>
-                <input type="url" name="img" bind:value={inputImgUrl} oninput={validarImagen} placeholder="https://ejemplo.com/foto.jpg"
-                    class="w-full border border-stone-200 bg-stone-50 p-2 text-xs font-mono text-stone-900 focus:outline-none focus:border-stone-900 rounded-none" />
                 <p class="text-[10px] text-stone-400 font-mono leading-tight uppercase">
-                    ⚠️ EL ARCHIVO DEBE SER UNA URL CARGADA PREVIAMENTE EN OTRAS PLATAFORMAS (COMO GOOGLE DRIVE DE ACCESO PÚBLICO, PROTON DRIVE O HOSTERIAS DE IMÁGENES).
+                    EL ARCHIVO DEBE SER UNA URL CARGADA PREVIAMENTE EN OTRAS PLATAFORMAS (COMO GOOGLE DRIVE DE ACCESO PÚBLICO, PROTON DRIVE O ALMACENAMIENTO DE IMÁGENES).
                 </p>
+                <input type="url" name="img" bind:value={inputImgUrl} oninput={validarImagen} placeholder="https://ejemplo.com/foto.jpg"
+                    class="lowercase" />
+              
             </div>
 
-            <div class="lg:col-span-4 h-[92px] border border-stone-200 bg-stone-50 flex items-center justify-center rounded-none relative overflow-hidden font-mono text-[9px] uppercase font-bold text-center p-2">
+            <div class="lg:col-span-4 h-full border border-stone-200 bg-stone-50 flex items-center justify-center rounded-none relative overflow-hidden font-mono text-[9px] uppercase font-bold text-center p-2">
                 {#if !inputImgUrl}
                     <span class="text-stone-400">Sin archivo para verificar</span>
                 {:else if imgCargando}

@@ -15,6 +15,7 @@
 </script>
 
 <section id="hero" class="relative w-full border min-h-[70vh] flex items-center  overflow-hidden inset-0 bg-[url('/img/hero_buscame.webp')] bg-cover bg-center">
+
     <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 text-white">
         <div class="lg:col-span-8 p-6 md:p-10 flex flex-col justify-center space-y-4 border-b lg:border-b-0 lg:border-r border-stone-800">
             <div class="space-y-1">
@@ -35,6 +36,22 @@
         </div>
     </div>
 </section>
+
+<div class="w-full bg-blue-100 p-4 font-sans">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row sm:items-center gap-3">
+        
+        <!-- Etiqueta con fondo sólido azul y texto blanco -->
+        <span class="bg-blue-700 text-white text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-none shrink-0 text-center">
+            Descargar Ficha
+        </span>
+        
+        <!-- Texto explicativo en tamaño normal -->
+        <p class="text-xs text-stone-900 leading-normal">
+            Si la persona está registrada como <span class="font-bold">desaparecida, herida o en un refugio</span>, dentro de su expediente estará disponible esta opción para bajar una imagen con sus datos lista para compartir en redes sociales.
+        </p>
+        
+    </div>
+</div>
 
 <section>
 <FormPersonas bind:form={form} estatusPersona={data.estatusPersona} />

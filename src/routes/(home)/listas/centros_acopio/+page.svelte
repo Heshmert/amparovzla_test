@@ -11,18 +11,18 @@
     }
 </script>
 
-<section id="hero" class="relative w-full border min-h-[70vh] flex items-center rounded-none overflow-hidden inset-0 bg-[url('/img/hero_acopio.webp')] bg-cover bg-center ">
+<section id="hero" class="relative w-full flex items-center overflow-hidden inset-0 bg-[url('/img/hero_acopio.webp')] bg-cover bg-center ">
 
         <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 text-white">
-        <div class="lg:col-span-8 p-6 md:p-10 flex flex-col justify-center space-y-4 border-b lg:border-b-0 lg:border-r border-stone-800">
-            <div class="space-y-1">
-                <h1 class="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-none text-stone-50">
-                    Puntos de Recepción
-                </h1>
-            </div>
-            <p class="text-xs md:text-sm text-stone-300 max-w-2xl font-normal leading-relaxed border-l border-stone-500 pl-4">
+            <div class="lg:col-span-8  md:p-10 flex flex-col justify-center space-y-4 border-b lg:border-b-0 lg:border-r border-stone-800">
+                <div class="space-y-1">
+                    <h1 class="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-none text-stone-50">
+                        Puntos de Recepción
+                    </h1>
+                </div>
+                <p class="text-xs md:text-sm text-stone-300 max-w-2xl font-normal leading-relaxed border-l border-stone-500 pl-4">
                 Índice civil de centros distribuidos para la coordinación de contingencias. Directorio de acceso público para la verificación de locaciones e inventarios base.
-            </p>
+                </p>
         </div>
 
         <div class="lg:col-span-4 bg-stone-950/30 p-6 md:p-10 flex flex-col justify-center font-mono">
