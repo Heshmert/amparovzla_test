@@ -5,7 +5,9 @@
 
     let { data, form } = $props();
     let cargando = $state(false);
-    let pasoActual = $state(1); 
+    let pasoActual = $state(1);
+    let password = $state('');
+	let verificar = $state(''); 
 
     let selectedTalents = $state([]);
     let selectedAreas = $state([]);
@@ -59,7 +61,7 @@
         <div class="max-w-md w-full mx-auto space-y-2">
             <div>
                 <Header
-                    titulo="Registro como Voluntariado"
+                    titulo="Registro"
                     exito={form?.exito}
                     error={form?.error}
                     />
@@ -89,11 +91,28 @@
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             <div class="space-y-1">
                                 <label for="id-card" class="text-[10px] font-black uppercase tracking-wider text-stone-600">Cédula</label>
-                                <input type="number" id="id-card" name="cedula" required placeholder="V-00000000" min="0" max="99999999"/>
+                                <div class="flex">
+                                <select id="nacionalidad" name="nacionalidad" required class="w-min" >
+                                    <option value="V">V</option>
+                                    <option value="E">E</option>
+                                </select>
+                                <input type="number" id="id-card" name="cedula" required placeholder="00000000" min="0" max="99999999"/>
+                                </div>
+                                
                             </div>
                             <div class="space-y-1">
                                 <label for="phone" class="text-[10px] font-black uppercase tracking-wider text-stone-600">Teléfono</label>
-                                <input type="tel" id="phone" name="telefono" required placeholder="0412-0000000" />
+                                <div class="flex">
+                                <select id="codigo" name="codigo" required class="w-min" >
+                                    <option value="0412">0412</option>
+                                    <option value="0422">0422</option>
+                                    <option value="0414">0414</option>
+                                    <option value="0424">0424</option>
+                                    <option value="0416">0416</option>
+                                    <option value="0426">0426</option>
+                                </select>
+                                <input type="tel" id="phone" name="telefono" required placeholder="0000000"/>
+                                </div>
                             </div>
                         </div>
 
@@ -117,8 +136,39 @@
                             <input type="email" id="reg-email" name="correo" required placeholder="CORREO@DOMINIO.COM" class="lowercase" />
                         </div>
                         <div class="space-y-1">
-                            <label for="reg-password" class="text-[10px] font-black uppercase tracking-wider text-stone-600">Contraseña</label>
-                            <input type="password" id="reg-password" name="password" required placeholder="••••••••" />
+                            <div class="flex flex-col gap-1">
+                                <label for="reg-password" class="text-[10px] font-black uppercase tracking-wider text-stone-600">
+                                    Contraseña
+                                </label>
+                                <input 
+                                    type="password" 
+                                    id="reg-password" 
+                                    name="password" 
+                                    bind:value={password} 
+                                    required 
+                                    placeholder="••••••••" 
+                                />
+                            </div>
+
+                            <div class="flex flex-col gap-1">
+                                <label for="verificar" class="text-[10px] font-black uppercase tracking-wider text-stone-600">
+                                    Confirmar Contraseña
+                                </label>
+                                <input 
+                                    type="password" 
+                                    id="verificar" 
+                                    name="verificar" 
+                                    bind:value={verificar} 
+                                    required 
+                                    placeholder="••••••••" 
+                                />
+                            </div>
+
+                            {#if password && verificar && password !== verificar}
+                                <p class="text-[10px] font-black uppercase tracking-wider text-red-700 mt-1">
+                                    La contraseña debe coincidir.
+                                </p>
+                            {/if}
                         </div>
 
                         <button type="button" onclick={siguientePaso} class="w-full bg-stone-900 text-white p-3 text-xs font-bold uppercase tracking-wider hover:bg-stone-800 transition rounded-none mt-2">

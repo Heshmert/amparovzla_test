@@ -25,10 +25,16 @@ export const actions = {
 
     const talentosIds = data.getAll("talentosIds").slice(0, 4);
     const areasIds = data.getAll("areasIds").slice(0, 4);
-
+    
+    if(b.password != b.verificar){
+      return { error: "La contraseña debe coincidir" };
+      }
     try {
       const securePassword = await hashPassword(b.password);
       const cedulaLimpia = b.cedula.trim().toUpperCase();
+
+      
+      const telefono = b.codigo + b.telefono;
 
       const personaExistente = await db.query.personas.findFirst({
         where: eq(personas.cedula, cedulaLimpia),
@@ -44,7 +50,7 @@ export const actions = {
             apellido: b.apellido.toUpperCase(),
             genero: b.genero,
             tipoSangre: b.tipoSangre,
-            telefono: b.telefono,
+            telefono: telefono,
             fechaNacimiento: b.fechaNacimiento,
             estatus: "BIEN",
             updatedAt: new Date(),
@@ -58,8 +64,9 @@ export const actions = {
         personaId: personaIdAsignada,
         nombre: b.nombre.toUpperCase(),
         apellido: b.apellido.toUpperCase(),
+        nacionalidad: b.nacionalidad,
         cedula: cedulaLimpia,
-        telefono: b.telefono,
+        telefono: telefono,
         correo: b.correo.toLowerCase(),
         rol: "VOLUNTARIO",
         password: securePassword,

@@ -67,6 +67,7 @@ export const usuarios = pgTable(
     }),
     nombre: text("nombre").notNull(),
     apellido: text("apellido").notNull(),
+    nacionalidad: text("nacionalidad").default("V").notNull(),
     cedula: text("cedula").notNull(),
     genero: text("genero").notNull(),
     telefono: text("telefono"),
