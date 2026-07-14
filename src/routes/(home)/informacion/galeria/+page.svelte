@@ -1,35 +1,54 @@
 <script>
+  import Hero from "$lib/components/Hero.svelte";
+
   let { data } = $props();
   let itemActivo = $state(null);
 </script>
 
-<section id="hero" class="relative w-full border flex items-center inset-0 bg-[url('/img/hero_galeria.webp')] bg-cover bg-center">
-  <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 text-white w-full">
-    <div class="lg:col-span-8 p-6 md:p-10 flex flex-col justify-center space-y-4 border-b lg:border-b-0 lg:border-r border-stone-800">
-      <div class="space-y-1">
-        <h1 class="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-none text-stone-50">
-          Archivo Documental
-        </h1>
-      </div>
-      <p class="text-xs md:text-sm text-stone-300 max-w-2xl font-normal leading-relaxed border-l border-stone-500 pl-4">
-        Registro fotográfico. Este módulo funciona exclusivamente como evidencia visual e histórica de los eventos sucedidos.
-      </p>
-    </div>
+<Hero 
+    titulo="Archivo"
+    palabraResaltante="documental"
+    descripcion="Nuestras fotos de la calle. Guardamos este registro para que no se olvide lo que pasó y todo quede documentado de forma transparente."
+    tag="Registro visual"
+    imagen="/img/hero_galeria.webp"
+    claseTextoResaltado="text-emerald-400"
+    claseTag="bg-emerald-800 text-white"
+    claseBordeDesc="border-emerald-400"
+>
+    <!-- Detalle de envío de fotos por Instagram -->
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 w-full text-left">
+        
+        <div class="md:col-span-6">
+            <span class="text-xm font-bold uppercase text-emerald-400 tracking-wider block font-mono">
+                ¿Tienes fotos de lo que pasó?
+            </span>
+            <p class="text-[11px] text-stone-300 leading-relaxed max-w-md">
+                Si tienes fotos o videos que sirvan para documentar las cosas que pasaron en tu cuadra, mándanos un mensaje directo por nuestro Instagram (@amparo.vzla). Así nos ayudamos a tener un registro real de todo.
+            </p>
+        </div>
 
-    <div class="lg:col-span-4 bg-stone-950/40 p-6 md:p-10 flex flex-col justify-center font-mono">
-      <span class="text-[10px] font-black uppercase text-amber-500 tracking-wider block mb-2">Recepción de Evidencias</span>
-      <p class="text-[11px] text-stone-400 leading-normal mb-4">
-        Si dispone de material visual que evidencia parte de los echos sucedidos, remita los archivos vía mensaje directo en Instagram en donde puede incluir:
-      </p>
-      <ul class="text-[10px] text-stone-300 space-y-1 uppercase font-bold border-t border-stone-800 pt-3">
-        <li>Nombre exacto del sitio (Ubicacion)</li>
-        <li>Autor de la imagen</li>
-        <li>Fecha y hora del acontecimiento</li>
-        <li>Breve descripción del hecho</li>
-      </ul>
+        <div class="md:col-span-6">
+            <span class="text-xs font-black uppercase text-stone-400 tracking-wider block font-mono">
+                Por favor, mándanos estos detalles:
+            </span>
+            <ul class="text-[10px] text-stone-200 space-y-1.5 uppercase font-bold font-mono">
+                <li class="flex items-center gap-2">
+                    Lugar exacto (parroquia y sector)
+                </li>
+                <li class="flex items-center gap-2">
+                    Quién tomó la foto (para darte el crédito)
+                </li>
+                <li class="flex items-center gap-2">
+                    Qué día y a qué hora fue
+                </li>
+                <li class="flex items-center gap-2">
+                    Qué estaba pasando en ese momento
+                </li>
+            </ul>
+        </div>
+
     </div>
-  </div>
-</section>
+</Hero>
 
 <div class="w-full bg-amber-50 border-b border-stone-200 p-4 font-mono">
   <div class="max-w-7xl mx-auto flex flex-col sm:flex-row sm:items-center justify-between gap-2">

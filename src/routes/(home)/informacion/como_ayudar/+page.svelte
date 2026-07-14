@@ -1,4 +1,5 @@
 <script>
+import Hero from '$lib/components/Hero.svelte';
     // Arreglo estructurado de datos con nombres de variables completos
 const listaPerfiles = [
     {
@@ -216,7 +217,7 @@ const listaPerfiles = [
 {#snippet perfilCard(rol, titulo, descripcion)}
     <div class="p-6 bg-white border border-stone-200 rounded-none hover:border-blue-700 transition-colors group flex flex-col justify-between h-full">
         <div>
-            <span class="text-[10px] font-black text-blue-700 uppercase mb-3 block tracking-widest group-hover:text-stone-900 transition-colors">
+            <span class="text-[10px] font-black text-blue-700 uppercase mb-3 block tracking-widest group-hover:text-stone-900 transition-colors font-mono">
                 {rol}
             </span>
             <h3 class="text-xs font-black text-stone-900 uppercase mb-2 tracking-tight">
@@ -229,21 +230,19 @@ const listaPerfiles = [
     </div>
 {/snippet}
 
-<section id="hero" class="relative w-full min-h-[50vh] flex items-center py-16 overflow-hidden
-bg-[url('/img/hero_ayudar.webp')] bg-cover bg-center">
+<Hero 
+    titulo="Cada oficio"
+    palabraResaltante="suma una ayuda"
+    descripcion="Para salir adelante necesitamos que cada quien ponga lo que sabe hacer sobre la mesa. No buscamos solo manos vacías; queremos organizar lo que mejor sabe hacer cada uno para ayudar de verdad en las comunidades."
+    tag="Voluntariado"
+    imagen="/img/hero_ayudar.webp"
+    claseTextoResaltado="text-amber-400"
+    claseTag="bg-blue-700 text-white"
+    claseBordeDesc="border-amber-400"
+/>
 
-    
-    <div class="relative z-10 px-6 md:px-10 max-w-4xl w-full">        
-        <h1 class="text-4xl sm:text-5xl md:text-6xl font-black text-white tracking-tighter uppercase leading-[0.9] mb-6">
-            Cada talento<br class="hidden md:block"/> suma una solución
-        </h1>
-        <p class="text-xs md:text-sm text-stone-400 font-normal leading-relaxed max-w-2xl border-l border-stone-700 pl-4">
-            Para salir adelante necesitamos que cada quien ponga lo que sabe hacer sobre la mesa. No buscamos solo manos vacías; queremos organizar lo que mejor sabe hacer cada uno para ayudar de verdad en las comunidades. Mira cómo tu oficio o profesión puede ser el motor que levante a un sector.
-        </p>
-    </div>
-</section>
 
-<section class="p-6 md:p-10 bg-stone-50 rounded-none border-b">
+<section class="p-6 md:p-10 bg-stone-50 rounded-none border-b border-stone-200">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         {#each listaPerfiles as perfil}
             {@render perfilCard(perfil.rol, perfil.titulo, perfil.descripcion)}
@@ -251,20 +250,21 @@ bg-[url('/img/hero_ayudar.webp')] bg-cover bg-center">
     </div>
 </section>
 
+
 <section class="w-full bg-white p-8 md:p-12 text-center rounded-none flex flex-col items-center justify-center space-y-6">
     <div class="max-w-2xl space-y-2">
-        <span class="text-[10px] font-black text-blue-700 uppercase tracking-widest block">Convocatoria Abierta Ciudadana</span>
-        <h2 class="text-2xl md:text-3xl font-black text-stone-900 uppercase tracking-tighter">
-            ¿Tu ocupación no aparece en el listado maestro?
+        <span class="text-[10px] font-black text-blue-700 uppercase tracking-widest block font-mono">Aquí hacemos falta todos</span>
+        <h2 class="text-2xl md:text-3xl font-black text-stone-900 uppercase tracking-tighter leading-none">
+            ¿No encuentras lo que sabes hacer en la lista?
         </h2>
-        <p class="text-xs text-stone-600 max-w-lg mx-auto leading-normal">
-            No importa la naturaleza de tu oficio. La estructura modular de asistencia requiere coordinadores, personal de apoyo básico y voluntarios de campo de cualquier área del conocimiento.
+        <p class="text-xs text-stone-600 max-w-lg mx-auto leading-relaxed">
+            No te preocupes por el nombre de tu trabajo. Para dar una mano no hace falta un título especial ni estar en un listado; hacen falta vecinos con ganas de colaborar, de ordenar las cosas que llegan o de acompañar a la gente en el terreno.
         </p>
     </div>
 
     <div>
-        <button class="bg-stone-900 text-white font-black uppercase text-xs tracking-wider px-8 py-4 rounded-none border border-stone-950 hover:bg-stone-800 transition-colors select-none">
-            Todos Sumamos
+        <button class="bg-stone-900 text-white font-black uppercase text-xs tracking-widest px-8 py-4 rounded-none border border-stone-950 hover:bg-stone-800 transition-colors select-none font-mono">
+            Quiero sumarme
         </button>
     </div>
 </section>

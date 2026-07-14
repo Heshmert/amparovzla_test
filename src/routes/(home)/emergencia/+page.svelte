@@ -1,4 +1,6 @@
 <script>
+  import Hero from "$lib/components/Hero.svelte";
+
     // Datos fijos en el frontend
     const lineasAyuda = [
         {
@@ -114,27 +116,30 @@
     </div>
 {/snippet}
 
-<section id="hero" class="relative w-full min-h-[35vh] flex items-center py-12 bg-stone-900 overflow-hidden inset-0 bg-[url('/img/hero_emergencia.webp')] bg-cover bg-center">
-
-    <div class="relative z-10 px-6 md:px-10 max-w-4xl w-full space-y-5">        
-        <h1 class="text-3xl md:text-5xl font-black text-white tracking-tighter uppercase leading-none mb-3">
-            Números de Emergencia
-        </h1>
-        <p class="text-xs md:text-sm text-stone-200 font-normal font-sans normal-case leading-relaxed max-w-xl border-l border-stone-700 pl-4">
-            Si tienes una urgencia o necesitas ayuda en tu comunidad, busca en esta lista. Puedes llamar directamente tocando el botón de cada tarjeta desde tu teléfono.
-        </p>
-        <label for="buscador" class="text-[10px] font-black text-white uppercase">¿Qué ayuda necesitas?</label>
+<Hero 
+    titulo="Números de"
+    palabraResaltante="emergencia"
+    descripcion="Si tienes una urgencia o necesitas ayuda rápida en tu comunidad, busca en esta lista. Puedes llamar directamente tocando el botón de cada tarjeta desde tu teléfono celular."
+    tag="Números útiles"
+    imagen="/img/hero_emergencia.webp"
+    claseTextoResaltado="text-red-500"
+    claseTag="bg-red-700 text-white"
+    claseBordeDesc="border-red-500"
+>
+    <!-- Buscador limpio sin clases de diseño redundantes (el CSS global se encarga) -->
+    <div class="space-y-2 max-w-xl mt-4">
+        <label for="buscador" class="text-[10px] font-black text-stone-300 uppercase tracking-wider block font-mono">
+            ¿Qué tipo de ayuda necesitas encontrar?
+        </label>
         <input 
             id="buscador"
             type="text" 
             bind:value={loQueBusca}
-            placeholder="Escribe aquí lo que buscas (ejemplo: bomberos, comida, agua, policía)..."
-            class=" p-4 "
+            placeholder="Escribe lo que buscas (ej. bomberos, agua, ambulancia, policía)..."
+            class="w-full"
         />
-
     </div>
-
-</section>
+</Hero>
 
 <section id="lista-emergencias" class="w-full p-4 md:p-6 bg-white rounded-none">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">

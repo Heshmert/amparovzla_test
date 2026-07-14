@@ -1,4 +1,6 @@
 <script>
+  import Hero from "$lib/components/Hero.svelte";
+
     let { data } = $props();
     
     // Control reactivo del Dialog Detallado
@@ -10,29 +12,29 @@
         dialogRef.showModal();
     }
 </script>
-
-<section id="hero" class="relative w-full flex items-center overflow-hidden inset-0 bg-[url('/img/hero_acopio.webp')] bg-cover bg-center ">
-
-        <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 text-white">
-            <div class="lg:col-span-8  md:p-10 flex flex-col justify-center space-y-4 border-b lg:border-b-0 lg:border-r border-stone-800">
-                <div class="space-y-1">
-                    <h1 class="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-none text-stone-50">
-                        Puntos de Recepción
-                    </h1>
-                </div>
-                <p class="text-xs md:text-sm text-stone-300 max-w-2xl font-normal leading-relaxed border-l border-stone-500 pl-4">
-                Índice civil de centros distribuidos para la coordinación de contingencias. Directorio de acceso público para la verificación de locaciones e inventarios base.
-                </p>
-        </div>
-
-        <div class="lg:col-span-4 bg-stone-950/30 p-6 md:p-10 flex flex-col justify-center font-mono">
-            <span class="text-[9px] font-black uppercase text-stone-400 tracking-wider block mb-1">Restricción de Datos</span>
-            <p class="text-[11px] text-stone-400 leading-normal uppercase">
-                Los datos de contacto y direcciones exactas mostrados pertenecen exclusivamente a los establecimientos validados por las entidades civiles registradas.
+ 
+<Hero 
+    titulo="Puntos de"
+    palabraResaltante="recepción"
+    descripcion="Aquí reunimos los centros que están activos recibiendo colaboración en cada zona. Un mapa directo para que sepas a dónde ir a llevar tu ayuda y qué es lo que más hace falta en el terreno."
+    tag="Centros de ayuda"
+    imagen="/img/hero_acopio.webp"
+    claseTextoResaltado="text-amber-400"
+    claseTag="bg-blue-700 text-white"
+    claseBordeDesc="border-amber-400"
+>
+    <!-- Tarjeta informativa derecha adaptada al diseño asimétrico -->
+    <div class="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-8 w-full text-left">
+        <div class="lg:col-span-4 bg-stone-950/20 p-6 border border-stone-800 space-y-2">
+            <span class="text-[10px] font-mono font-black text-amber-400 uppercase tracking-widest block">
+                Solo sitios confirmados
+            </span>
+            <p class="text-[11px] text-stone-300 leading-relaxed uppercase font-mono">
+                Las direcciones y teléfonos que vas a ver aquí son de locales y casas que nosotros mismos o los vecinos organizados ya fuimos a verificar en persona.
             </p>
         </div>
     </div>
-</section>
+</Hero>
 
 <section class="mt-6 space-y-4">
     <div class="p-3 bg-white border border-stone-200 rounded-none flex items-center justify-between">

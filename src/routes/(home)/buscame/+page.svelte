@@ -1,6 +1,7 @@
 <script>
     import FichaPersona from '$lib/components/FichaPersona.svelte';
     import FormPersonas from '$lib/components/forms/FormPersonas.svelte';
+  import Hero from '$lib/components/Hero.svelte';
     import TablaPersonas from '$lib/components/tablas/TablaPersonas.svelte';
 
     let { data, form = $bindable() } = $props();
@@ -14,28 +15,28 @@
     }
 </script>
 
-<section id="hero" class="relative w-full border min-h-[70vh] flex items-center  overflow-hidden inset-0 bg-[url('/img/hero_buscame.webp')] bg-cover bg-center">
-
-    <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 text-white">
-        <div class="lg:col-span-8 p-6 md:p-10 flex flex-col justify-center space-y-4 border-b lg:border-b-0 lg:border-r border-stone-800">
-            <div class="space-y-1">
-                <h1 class="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-none text-stone-50">
-                    Búscame
-                </h1>
-            </div>
-            <p class="text-xs md:text-sm text-stone-300 max-w-2xl font-normal leading-relaxed border-l border-stone-500 pl-4">
-                Índice público de contingencia para la localización, reporte y seguimiento de ciudadanos. Módulo habilitado exclusivamente para el registro y consulta directa de la población.
-            </p>
-        </div>
-
-        <div class="lg:col-span-4 bg-stone-950/30 p-6 md:p-10 flex flex-col justify-center font-mono">
-            <span class="text-[9px] font-black uppercase text-stone-400 tracking-wider block mb-1">Acceso de Escritura Abierto</span>
-            <p class="text-[11px] text-stone-400 leading-normal uppercase">
-                Utilice el panel inferior para ingresar los datos físicos u operativos de una persona. Evite duplicar registros si ya existen coincidencias en la tabla de datos.
+<Hero 
+    titulo="Búscame: saber"
+    palabraResaltante="que estamos bien"
+    descripcion="Una herramienta vecinal para saber el estado de nuestra gente en momentos difíciles. Aquí puedes registrar a los vecinos de tu sector o buscar a tus seres queridos para tener calma."
+    tag="Red de personas"
+    imagen="/img/hero_buscame.webp"
+    claseTextoResaltado="text-amber-400"
+    claseTag="bg-blue-700 text-white"
+    claseBordeDesc="border-amber-400"
+>
+    <!-- Bloque de advertencia civil sobre duplicados -->
+    <div class="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-8 w-full text-left">
+        <div class="lg:col-span-4 bg-stone-950/20 p-6 border border-stone-800 space-y-2">
+            <span class="text-[10px] font-mono font-black text-amber-400 uppercase tracking-widest block">
+                Suma datos con cuidado
+            </span>
+            <p class="text-[11px] text-stone-300 leading-relaxed uppercase font-mono">
+                Usa el formulario de abajo para registrar a un vecino. Por favor, revisa primero la tabla de búsqueda para confirmar que nadie lo haya anotado antes.
             </p>
         </div>
     </div>
-</section>
+</Hero>
 
 <div class="w-full bg-blue-100 p-4 font-sans">
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row sm:items-center gap-3">
