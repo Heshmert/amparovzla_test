@@ -167,6 +167,7 @@
     <div class="max-w-6xl mx-auto">
         <div class="grid lg:grid-cols-12 gap-12 items-start">
 
+            <!-- Columna de Contexto Humano -->
             <div class="lg:col-span-5 space-y-6 lg:sticky lg:top-8">
                 <span class="text-[10px] font-black text-white bg-stone-900 px-3 py-1 uppercase inline-block tracking-widest font-mono rounded-none">
                     Cosas en camino
@@ -182,30 +183,31 @@
                 </p>
             </div>
 
+            <!-- Herramientas en Camino usando Snippets -->
             <div class="lg:col-span-7 grid sm:grid-cols-2 gap-4">
                 {@render pilarProgreso(
                     "Apoyo y Refugio Animal", 
-                    "Para saber qué zonas están en riesgo y organizar el cuidado, la medicina y el cobijo de los animales que también nos necesitan."
+                    "Para ubicar a las mascotas y animales que quedaron desprotegidos, organizando atención médica y lugares seguros donde puedan quedarse."
                 )}
 
                 {@render pilarProgreso(
-                    "Organizar Carros y Motos", 
-                    "Para coordinar de forma limpia a los vecinos que tienen transporte, moviendo la comida y las medicinas de forma rápida y segura."
+                    "Salud Mental y Escucha", 
+                    "Para conectar a psicólogos voluntarios con los vecinos que necesitan desahogarse, recibir apoyo emocional o calmar los nervios en momentos duros."
                 )}
 
                 {@render pilarProgreso(
-                    "Casas de Abrigo y Refugio", 
-                    "Un registro sencillo para saber qué espacios comunitarios están activos, qué familias están allí y qué insumos les faltan con urgencia."
+                    "Casas de Abrigo y Refugios", 
+                    "Un control claro de los espacios solidarios activos, cuántas familias caben en ellos y qué cobijas, ropa o insumos les faltan con urgencia."
                 )}
 
                 {@render pilarProgreso(
-                    "Equipos de Apoyo en Calle", 
-                    "Para organizar a las personas que se mueven en el terreno, distribuyendo las tareas y sabiendo en qué punto está trabajando cada quien."
+                    "Comida y Ollas Comunitarias", 
+                    "Para organizar los centros que reparten alimentos, saber dónde hacen falta platos calientes y canalizar las donaciones directo a las familias."
                 )}
 
                 {@render pilarProgreso(
-                    "Ambulatorios y Salud", 
-                    "Un mapa directo de los centros de salud y ambulatorios activos, sus necesidades críticas y cómo podemos arrimar el hombro."
+                    "Avisos y Alertas del Barrio", 
+                    "Para que cualquier vecino pueda reportar postes caídos, calles trancadas o tuberías rotas, ayudando a que todos sepamos dónde está el peligro."
                 )}
             </div>
         </div>

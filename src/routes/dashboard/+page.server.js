@@ -19,12 +19,17 @@ export const actions = {
     if (!locals.user) return fail(401, { error: "No autorizado." });
 
     const data = await request.formData();
+    const telefonoPrincipal = data.get("codigo1") + data.get("telefonoPrincipal")?.toString().trim();
+    let telefonoSecundario = null;
+    if (data.get("telefonoSecundario")){
+      telefonoSecundario = data.get("codigo2") + data.get("telefonoSecundario")?.toString().trim();
+    };
 
     const payload = {
       nombre: data.get("nombre")?.toString().trim(),
       tipo: data.get("tipo")?.toString(),
-      telefonoPrincipal: data.get("telefonoPrincipal")?.toString().trim(),
-      telefonoSecundario:data.get("telefonoSecundario")?.toString().trim() || null,
+      telefonoPrincipal: telefonoPrincipal,
+      telefonoSecundario: telefonoSecundario,
       emailContacto: data.get("emailContacto")?.toString().trim(),
       estado: data.get("estado")?.toString(),
       municipio: data.get("municipio")?.toString(),
@@ -48,18 +53,18 @@ export const actions = {
     }
 
     try {
-      // Verificar si ya tiene entidad
       const existe = await db
         .select()
         .from(entidades)
         .where(eq(entidades.encargadoId, locals.user.id))
         .limit(1);
-      if (existe.length > 0)
+      
+      if (existe.length > 0) {
         return fail(400, { error: "Ya tienes una organización registrada." });
+      }
 
       const codigoUnico = `VZLA-${Math.random().toString(36).substring(2, 6).toUpperCase()}`;
 
-      // Insertar de forma directa y segura
       await db.insert(entidades).values({
         ...payload,
         codigo: codigoUnico,
@@ -76,4 +81,16 @@ export const actions = {
       return fail(500, { error: "Error interno al procesar el registro." });
     }
   },
+  deshacerEntidad: async ({ request, locals }) => {
+    if (!locals.user) return fail(401, { error: "No autorizado." });
+    
+    const data = await request.formData();
+    const codigo = data.get("codigo")?.toString();
+
+    if (codigo) {
+      await db.delete(entidades).where(eq(entidades.codigo, codigo));
+      return { error: "Error al subir el video. Intenta de nuevo."};
+    }
+    return fail(400);
+  }
 };
