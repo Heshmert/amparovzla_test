@@ -171,8 +171,8 @@
                             {/if}
                         </div>
 
-                        <button type="button" onclick={siguientePaso} class="w-full bg-stone-900 text-white p-3 text-xs font-bold uppercase tracking-wider hover:bg-stone-800 transition rounded-none mt-2">
-                            CONTINUAR
+                        <button type="button" onclick={siguientePaso} class="w-full bg-stone-900 text-white p-3 text-xs font-bold uppercase tracking-wider hover:bg-stone-800 transition rounded-none flex justify-center items-center gap-3">
+                        CONTINUAR <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-big-right-dash-icon lucide-arrow-big-right-dash"><path d="M11 9a1 1 0 0 0 1-1V4.707a.707.707 0 0 1 1.207-.5l6.94 6.94a1.207 1.207 0 0 1 0 1.707l-6.94 6.94a.707.707 0 0 1-1.207-.5V16a1 1 0 0 0-1-1H9a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1z"/><path d="M4 9v6"/></svg>
                         </button>
                     </div>
 
@@ -282,11 +282,11 @@
                         </div>
 
                         <div class="grid grid-cols-3 gap-2 pt-2">
-                            <button type="button" onclick={pasoAnterior} class="bg-stone-200 text-stone-800 p-3 text-xs font-bold uppercase tracking-wider hover:bg-stone-300 transition rounded-none">
-                                VOLVER
+                            <button type="button" onclick={pasoAnterior} class="bg-stone-200 text-stone-800 p-3 text-xs font-bold uppercase tracking-wider hover:bg-stone-300 transition rounded-none flex justify-center items-center gap-3">
+                               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-big-left-dash-icon lucide-arrow-big-left-dash"><path d="M13 9a1 1 0 0 1-1-1V4.707a.707.707 0 0 0-1.207-.5l-6.94 6.94a1.207 1.207 0 0 0 0 1.707l6.94 6.94a.707.707 0 0 0 1.207-.5V16a1 1 0 0 1 1-1h2a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1z"/><path d="M20 9v6"/></svg> VOLVER
                             </button>
-                            <button type="submit" disabled={cargando} class="col-span-2 bg-stone-900 text-white p-3 text-xs font-bold uppercase tracking-wider hover:bg-stone-800 transition rounded-none disabled:bg-stone-400">
-                                {cargando ? 'REGISTRANDO...' : 'COMPLETAR REGISTRO'}
+                            <button type="submit" disabled={cargando} class="col-span-2 bg-stone-900 text-white p-3 text-xs font-bold uppercase tracking-wider hover:bg-stone-800 transition rounded-none disabled:bg-stone-400 flex justify-center items-center gap-3">
+                                COMPLETAR REGISTRO <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg>
                             </button>
                         </div>
                     </div>

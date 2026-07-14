@@ -17,7 +17,7 @@
 
 <Hero 
     titulo="Búscame: saber"
-    palabraResaltante="que estamos bien"
+    palabraResaltante="como estamos"
     descripcion="Una herramienta vecinal para saber el estado de nuestra gente en momentos difíciles. Aquí puedes registrar a los vecinos de tu sector o buscar a tus seres queridos para tener calma."
     tag="Red de personas"
     imagen="/img/hero_buscame.webp"
@@ -26,8 +26,8 @@
     claseBordeDesc="border-amber-400"
 >
     <!-- Bloque de advertencia civil sobre duplicados -->
-    <div class="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-8 w-full text-left">
-        <div class="lg:col-span-4 bg-stone-950/20 p-6 border border-stone-800 space-y-2">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 w-full text-left">
+        <div class="lg:col-span-4 bg-stone-950/60 p-6 border border-stone-800 space-y-2">
             <span class="text-[10px] font-mono font-black text-amber-400 uppercase tracking-widest block">
                 Suma datos con cuidado
             </span>

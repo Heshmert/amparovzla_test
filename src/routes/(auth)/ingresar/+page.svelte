@@ -83,8 +83,8 @@ const manejarSubmit = () => {
                     </div>
 
                     <button type="submit" disabled={cargando}
-                        class="w-full bg-blue-800 text-white p-3 text-xs font-bold uppercase tracking-wider hover:bg-blue-900 transition rounded-none shadow-xs mt-2 disabled:bg-stone-400">
-                        {cargando ? 'VERIFICANDO...' : 'ENTRAR A LA PLATAFORMA'}
+                        class="w-full bg-blue-800 text-white p-3 text-xs font-bold uppercase tracking-wider hover:bg-blue-900 transition rounded-none shadow-xs mt-2 disabled:bg-stone-400 flex justify-center items-center gap-3">
+                        ENTRAR A LA PLATAFORMA <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-big-right-dash-icon lucide-arrow-big-right-dash"><path d="M11 9a1 1 0 0 0 1-1V4.707a.707.707 0 0 1 1.207-.5l6.94 6.94a1.207 1.207 0 0 1 0 1.707l-6.94 6.94a.707.707 0 0 1-1.207-.5V16a1 1 0 0 0-1-1H9a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1z"/><path d="M4 9v6"/></svg>
                     </button>
                 </form>
 

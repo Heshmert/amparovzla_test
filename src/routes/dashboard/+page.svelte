@@ -106,7 +106,6 @@
                                 throw new Error();
                             }
                         } catch (err) {
-                            // Operación Atómica: Si el video falla, borramos el rastro de la DB
                             const reversoForm = new FormData();
                             reversoForm.append("codigo", codigoAsignado);
                             await fetch("?/deshacerEntidad", { method: "POST", body: reversoForm });
@@ -127,13 +126,10 @@
                     <label for="nombre" class="text-[10px] font-black uppercase text-stone-600">Nombre de la Organización</label>
                     <input name="nombre" required class="w-full" />
                 </div>
-
                 <div class="space-y-1">
                     <label for="emailContacto" class="text-[10px] font-black uppercase text-stone-600">Email de Contacto</label>
-                    <input name="emailContacto" type="email" required  />
+                    <input name="emailContacto" type="email" required class="lowercase"  />
                 </div>
-
-                
             </div>
             <div >
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -229,8 +225,8 @@ exito={form?.exito}
         </div>
         <div>
             {#if data.user && data.user.rol !== 'ENCARGADO' && data.user.rol !== 'ADMIN'}
-                <button onclick={abrirModal} type="button" class="bg-stone-900 text-white font-black uppercase text-xs p-3 hover:bg-stone-800 transition">
-                    Postular Organización
+                <button onclick={abrirModal} type="button" class="bg-stone-900 text-white font-black uppercase text-xs p-3 hover:bg-stone-800 transition flex justify-center items-center gap-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-building2-icon lucide-building-2"><path d="M10 12h4"/><path d="M10 8h4"/><path d="M14 21v-3a2 2 0 0 0-4 0v3"/><path d="M6 10H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2"/><path d="M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16"/></svg> Postular Organización
                 </button>
             {/if}
         </div>

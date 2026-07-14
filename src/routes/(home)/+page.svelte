@@ -92,13 +92,13 @@
             <!-- BOTONES: Colores de la bandera (amigables), integrados al estilo -->
             <div class="flex flex-col sm:flex-row gap-4 justify-center mt-10 w-[85%] sm:w-auto">
                 <!-- Botón Secundario (Borde y Letras Amarillas, Fondo Nulo) -->
-                <a href="/buscame" class="border border-amber-400 text-amber-400 bg-transparent px-8 py-3.5 text-[10px] font-black uppercase tracking-widest hover:bg-amber-400 hover:text-slate-900 transition">
-                    Búscame
+                <a href="/buscame" class="border border-amber-400 text-amber-400 bg-transparent px-8 py-3.5 text-[10px] font-black uppercase tracking-widest hover:bg-amber-400 hover:text-slate-900 transition flex justify-center items-center gap-3">
+                   Búscame <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search-icon lucide-search"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg> 
                 </a>
                 
                 <!-- Botón Primario (Azul) -->
-                <a href="/ingresar" class="bg-blue-700 text-white px-8 py-3.5 text-[10px] font-black uppercase tracking-widest hover:bg-blue-600 transition">
-                    Ingresar al Sistema
+                <a href="/ingresar" class="bg-blue-700 text-white px-8 py-3.5 text-[10px] font-black uppercase tracking-widest hover:bg-blue-600 transition flex justify-center items-center gap-3">
+                    Ingresar <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-big-right-dash-icon lucide-arrow-big-right-dash"><path d="M11 9a1 1 0 0 0 1-1V4.707a.707.707 0 0 1 1.207-.5l6.94 6.94a1.207 1.207 0 0 1 0 1.707l-6.94 6.94a.707.707 0 0 1-1.207-.5V16a1 1 0 0 0-1-1H9a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1z"/><path d="M4 9v6"/></svg>
                 </a>
             </div>
         </h1>
@@ -215,8 +215,8 @@
                 No necesitamos superhéroes, necesitamos vecinos dispuestos a sumar. La verdadera capacidad de respuesta no está en las computadoras, sino en la gente que se organiza en cada calle para identificar quién necesita una mano y cómo hacérsela llegar de inmediato.
             </p>
             <div class="pt-2">
-                <a href="/registro" class="bg-stone-900 text-white px-8 py-4 text-[10px] font-black uppercase tracking-widest hover:bg-white hover:text-stone-900 transition-colors rounded-none border border-transparent hover:border-stone-900">
-                    Quiero ayudar a mis vecinos
+                <a href="/registro" class="bg-stone-900 text-white px-8 py-4 text-[10px] font-black uppercase tracking-widest hover:bg-white hover:text-stone-900 transition-colors rounded-none border border-transparent hover:border-stone-900 flex justify-center items-center gap-3">
+                    Quiero ayudar <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-handshake-icon lucide-handshake"><path d="m11 17 2 2a1 1 0 1 0 3-3"/><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"/><path d="m21 3 1 11h-2"/><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"/><path d="M3 4h8"/></svg>
                 </a>
             </div>
         </div>

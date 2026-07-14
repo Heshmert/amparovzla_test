@@ -18,7 +18,7 @@
 
 <section 
     id="hero" 
-    class="relative w-full min-h-[65vh] md:min-h-[75vh] flex items-end overflow-hidden bg-cover bg-center border-b border-stone-300 pt-20 md:pt-28"
+    class="relative w-full flex items-end overflow-hidden bg-cover bg-center pt-20 md:pt-28"
     style="background-image: url('{imagen}');"
 >
     <!-- Contenedor de contenido con empuje inferior asimétrico -->
@@ -40,13 +40,13 @@
                 {titulo}
                 {#if palabraResaltante}
                     <br class="hidden sm:inline" /> 
-                    <span class="{claseTextoResaltado} block sm:inline">{palabraResaltante}</span>
+                    <span class="{claseTextoResaltado} md:text-8xl block sm:inline">{palabraResaltante}</span>
                 {/if}
             </h1>
             
             <!-- Descripción con borde de color variable -->
             {#if descripcion}
-                <p class="text-xs md:text-sm text-stone-200 font-mono uppercase tracking-wider max-w-2xl border-l-4 {claseBordeDesc} pl-4 leading-relaxed">
+                <p class="text-xs md:text-sm text-stone-200 font-mono uppercase tracking-wider max-w-2xl border-l-8 {claseBordeDesc} pl-8 leading-relaxed">
                     {descripcion}
                 </p>
             {/if}
