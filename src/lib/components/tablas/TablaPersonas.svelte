@@ -48,7 +48,7 @@
                 <input type="text" placeholder="BUSCAR NOMBRE O APELLIDO..." bind:value={searchTerm} 
                     class="bg-stone-50 p-2 text-[10px] font-medium text-stone-900 uppercase w-full md:w-64 focus:outline-none focus:border-stone-900 rounded-none" />
                 <button type="submit" class="bg-stone-900 text-white px-4 py-2 text-[10px] font-black uppercase tracking-wider hover:bg-stone-800 transition rounded-none">
-                    Buscar
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search-icon lucide-search"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
                 </button>
             </form>
         </div>
