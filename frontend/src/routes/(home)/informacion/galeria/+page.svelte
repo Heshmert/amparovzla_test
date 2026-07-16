@@ -59,7 +59,7 @@
 </div>
 
 <section class="w-full bg-stone-50 p-4">
-  {#await archivosEvidencias.registros}
+  {#await archivosEvidencias}
     <div class="p-10 text-center border border-stone-200 bg-white rounded-none">
       <span class="text-[10px] font-black uppercase text-stone-400">Accediendo al almacenamiento local...</span>
     </div>
