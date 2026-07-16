@@ -12,7 +12,7 @@ export const load = async () => {
 export const actions = {
   logout: async ({ cookies }) => {
     cookies.delete("session_token", { path: "/" });
-    throw redirect(303, "/ingresar");
+    throw redirect(303, "/");
   },
 
   crearEntidad: async ({ request, locals }) => {

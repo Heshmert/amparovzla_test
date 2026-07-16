@@ -41,7 +41,7 @@ export async function handle({ event, resolve }) {
   }
 
   if (ruta.startsWith("/dashboard") && !event.locals.user) {
-    throw redirect(303, "/ingresar");
+    throw redirect(303, "/");
   }
 
   if (ruta.startsWith("/dashboard")) {
