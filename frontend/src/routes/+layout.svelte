@@ -1,8 +1,6 @@
 <script>
     import '../global.css';
     import favicon from '$lib/assets/favicon.svg';
-    export const prerender = true;
-
     let { children } = $props();
     let menuAbierto = $state(false);
     
@@ -75,7 +73,7 @@
   }
 
   /* Separadores sutiles (Líneas finas de la Ficha de Estilo) */
-  :global(.contenido-bruto-markdown  hr) {
+  :global(.contenido-bruto-markdown hr) {
     border: 0;
     border-top: 1px solid #e7e5e4; /* border-stone-200 */
     margin: 2rem 0;

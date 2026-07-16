@@ -150,10 +150,10 @@
         </p>
 
         <div class="flex flex-col sm:flex-row gap-4 pt-4">
-            <a href="/buscame#registrar" class="bg-amber-400 text-stone-950 px-10 py-4 text-[10px] font-black uppercase tracking-widest hover:bg-white hover:text-stone-950 transition-all rounded-none text-center">
+            <a href="/buscame" class="bg-amber-400 text-stone-950 px-10 py-4 text-[10px] font-black uppercase tracking-widest hover:bg-white hover:text-stone-950 transition-all rounded-none text-center">
                 Registrar Vecino
             </a>
-            <a href="/buscame#personas" class="border border-white/20 text-white px-10 py-4 text-[10px] font-black uppercase tracking-widest hover:bg-white/10 transition-all rounded-none text-center flex justify-center items-center gap-3">
+            <a href="/buscame" class="border border-white/20 text-white px-10 py-4 text-[10px] font-black uppercase tracking-widest hover:bg-white/10 transition-all rounded-none text-center flex justify-center items-center gap-3">
                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search-icon lucide-search"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg> Buscar Vecino
             </a>
         </div>

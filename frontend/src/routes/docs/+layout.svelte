@@ -2,7 +2,7 @@
   let { data, children } = $props();
   let desplegado = $state(false);
   import { PUBLIC_API_URL } from '$env/static/public';
-
+  export const prerender = true;
 
 </script>  
 
